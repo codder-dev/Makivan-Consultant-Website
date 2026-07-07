@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Calculator Tool | Makivan Consultants</title>
+    <meta name="description" content="Use our free tax calculator tool to estimate your personal and business tax obligations in Kenya. Quick, easy and accurate calculations.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#173f35">
+    <link rel="canonical" href="https://makivanconsultants.co.ke/tax-calculator-tool.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tax Calculator Tool | Makivan Consultants">
+    <meta property="og:description" content="Free tax calculator tool to estimate your tax obligations in Kenya.">
+    <meta property="og:url" content="https://makivanconsultants.co.ke/tax-calculator-tool.html">
+    <meta property="og:image" content="https://makivanconsultants.co.ke/images/taxconsultation.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Makivan Consultants | Tax Calculator Tool">
+    <meta name="twitter:description" content="Free tax calculator tool to estimate your tax obligations in Kenya.">
+    <meta name="twitter:image" content="https://makivanconsultants.co.ke/images/taxconsultation.jpeg">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <a href="index.html" class="brand"><img src="images/makivanlogo.jpg" alt="Makivan Consultants logo"><span>Makivan Consultants</span></a>
+        <button class="nav-toggle" id="hamburger" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+        <nav class="site-nav" id="navmenu" aria-label="Primary navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html" class="active">Services</a>
+            <a href="download.html">Resources</a>
+            <a href="contact.html" class="nav-cta">Consult Us</a>
+        </nav>
+    </header>
+
+    <main id="main">
+        <!-- ===== HERO ===== -->
+        <section class="page-hero text-center">
+            <div data-aos="fade-up">
+                <p class="eyebrow">Tax calculator tool</p>
+                <h1>Estimate your tax obligations in Kenya.</h1>
+                <p>Use our free, easy-to-use tax calculator to estimate your personal income tax, PAYE, or business tax obligations quickly and accurately.</p>
+            </div>
+        </section>
+
+        <!-- ===== CALCULATOR ===== -->
+        <section class="section">
+            <div class="calculator-wrapper" data-aos="fade-up">
+                <div class="calculator-container">
+                    <div class="calculator-header">
+                        <i class="fa-solid fa-calculator"></i>
+                        <div>
+                            <h2>Tax Calculator</h2>
+                            <p>Select your tax type and enter your income to get an estimate.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tax Type Selection -->
+                    <div class="calculator-section">
+                        <label for="taxType">Select Tax Type</label>
+                        <select id="taxType" class="calculator-select">
+                            <option value="income">Personal Income Tax</option>
+                            <option value="paye">PAYE (Employer)</option>
+                            <option value="turnover">Turnover Tax (3%)</option>
+                            <option value="vat">VAT Estimation</option>
+                            <option value="rental">Rental Income Tax</option>
+                        </select>
+                    </div>
+
+                    <!-- Income Input -->
+                    <div class="calculator-section">
+                        <label for="incomeAmount">Enter Annual Income (KES)</label>
+                        <div class="input-wrapper">
+                            <span class="input-prefix">KES</span>
+                            <input type="number" id="incomeAmount" class="calculator-input" placeholder="e.g. 1000000" min="0" step="1000">
+                        </div>
+                    </div>
+
+                    <!-- Additional Fields (conditional) -->
+                    <div id="additionalFields">
+                        <!-- PAYE Additional Fields -->
+                        <div class="calculator-section paye-fields" style="display:none;">
+                            <label for="payeEmployees">Number of Employees</label>
+                            <input type="number" id="payeEmployees" class="calculator-input" placeholder="e.g. 5" min="1">
+                        </div>
+
+                        <!-- VAT Additional Fields -->
+                        <div class="calculator-section vat-fields" style="display:none;">
+                            <label for="vatSales">Annual Sales (KES)</label>
+                            <input type="number" id="vatSales" class="calculator-input" placeholder="e.g. 5000000" min="0">
+                            <label for="vatPurchases" style="margin-top:12px;">Annual Purchases with VAT (KES)</label>
+                            <input type="number" id="vatPurchases" class="calculator-input" placeholder="e.g. 3000000" min="0">
+                        </div>
+
+                        <!-- Rental Income Additional Fields -->
+                        <div class="calculator-section rental-fields" style="display:none;">
+                            <label for="rentalExpenses">Annual Expenses (KES)</label>
+                            <input type="number" id="rentalExpenses" class="calculator-input" placeholder="e.g. 200000" min="0">
+                        </div>
+                    </div>
+
+                    <!-- Calculate Button -->
+                    <button id="calculateBtn" class="btn btn-primary calculate-btn">
+                        <i class="fa-solid fa-calculator"></i> Calculate Tax
+                    </button>
+
+                    <!-- Results -->
+                    <div id="resultsSection" class="results-section" style="display:none;">
+                        <div class="results-header">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <h3>Tax Estimate</h3>
+                        </div>
+                        <div id="resultsContent">
+                            <!-- Dynamic results will be inserted here -->
+                        </div>
+                        <div class="results-note">
+                            <i class="fa-solid fa-info-circle"></i>
+                            <p>This is an estimate only. For accurate calculations, please consult a tax professional. <a href="contact.html#consultation" class="results-link">Book a consultation</a> with our experts.</p>
+                        </div>
+                        <button id="resetBtn" class="btn btn-outline reset-btn">
+                            <i class="fa-solid fa-rotate-left"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sidebar - Tax Rate Information -->
+                <div class="calculator-sidebar">
+                    <div class="sidebar-card">
+                        <h3><i class="fa-solid fa-info-circle"></i> Tax Rates 2026</h3>
+                        <div class="sidebar-item">
+                            <span>Personal Income Tax:</span>
+                            <span>10% - 35%</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span>PAYE:</span>
+                            <span>10% - 35%</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span>Turnover Tax:</span>
+                            <span>3%</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span>VAT Rate:</span>
+                            <span>16%</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span>Rental Income:</span>
+                            <span>10%</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3><i class="fa-solid fa-hand-holding-dollar"></i> Need Help?</h3>
+                        <p>Our tax experts can help you with accurate calculations and filing.</p>
+                        <a href="contact.html#consultation" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:12px;">Book Consultation</a>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3><i class="fa-solid fa-file-lines"></i> Related Resources</h3>
+                        <a href="resources-tax-checklist.html" class="sidebar-link">KRA Tax Consultation Checklist</a>
+                        <a href="returns-filing.html" class="sidebar-link">Returns Filing Services</a>
+                        <a href="vat-returns.html" class="sidebar-link">VAT Returns Filing</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TAX TYPES EXPLAINED ===== -->
+        <section class="section tinted-section">
+            <div class="section-heading text-center" data-aos="fade-up">
+                <p class="eyebrow">Understanding taxes</p>
+                <h2>Tax types explained for Kenyan businesses.</h2>
+            </div>
+            <div class="compact-grid">
+                <article data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-user"></i>
+                    <h3>Personal Income Tax</h3>
+                    <p>Tax on income earned by individuals from employment, business, investments and other sources. Rates range from 10% to 35%.</p>
+                </article>
+                <article data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-users"></i>
+                    <h3>PAYE (Pay As You Earn)</h3>
+                    <p>Tax deducted from employee salaries by employers. Calculated based on monthly income and remitted to KRA by the 9th of each month.</p>
+                </article>
+                <article data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-shop"></i>
+                    <h3>Turnover Tax</h3>
+                    <p>Simplified tax for small businesses with annual turnover below KES 5 million. Calculated at 3% of gross sales.</p>
+                </article>
+                <article data-aos="fade-up" data-aos-delay="400">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <h3>VAT (Value Added Tax)</h3>
+                    <p>Tax on goods and services at 16%. Businesses registered for VAT must file monthly returns by the 20th.</p>
+                </article>
+                <article data-aos="fade-up" data-aos-delay="500">
+                    <i class="fa-solid fa-house-chimney"></i>
+                    <h3>Rental Income Tax</h3>
+                    <p>Tax on rental income from property. Calculated at 10% of gross rental income after allowable deductions.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ===== FAQ ===== -->
+        <section class="section faq-section">
+            <div class="section-heading text-center" data-aos="fade-up">
+                <p class="eyebrow">FAQ</p>
+                <h2>Common questions about tax calculations.</h2>
+            </div>
+            <div class="faq-list">
+                <details data-aos="fade-up" data-aos-delay="100">
+                    <summary><i class="fa-solid fa-plus"></i> How accurate is this tax calculator?</summary>
+                    <p>This calculator provides an estimate based on the information you provide and current tax rates. For official filings, consult a tax professional or KRA directly.</p>
+                </details>
+                <details data-aos="fade-up" data-aos-delay="150">
+                    <summary><i class="fa-solid fa-plus"></i> What tax deductions can I claim?</summary>
+                    <p>Common deductions include mortgage interest, insurance premiums, pension contributions, charitable donations and business expenses. A tax professional can help you maximize deductions.</p>
+                </details>
+                <details data-aos="fade-up" data-aos-delay="200">
+                    <summary><i class="fa-solid fa-plus"></i> When are tax payments due?</summary>
+                    <p>Tax due dates vary: PAYE by 9th, VAT by 20th, Income Tax by June 30th. Our team can help you track deadlines and ensure timely filing.</p>
+                </details>
+                <details data-aos="fade-up" data-aos-delay="250">
+                    <summary><i class="fa-solid fa-plus"></i> Do I need to pay tax if I'm self-employed?</summary>
+                    <p>Yes, self-employed individuals must file and pay income tax based on their business income. We can help you understand your obligations.</p>
+                </details>
+                <details data-aos="fade-up" data-aos-delay="300">
+                    <summary><i class="fa-solid fa-plus"></i> What happens if I don't pay taxes?</summary>
+                    <p>Failure to pay taxes can result in penalties, interest charges, and potential legal action from KRA. We help ensure you stay compliant.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- ===== CTA ===== -->
+        <section class="section cta-section" data-aos="zoom-in" data-aos-duration="800">
+            <div>
+                <p class="eyebrow">Need professional help?</p>
+                <h2>Let our tax experts handle your calculations and filings.</h2>
+                <p>Get accurate tax calculations, timely filings and expert advice to keep your business compliant.</p>
+                <div class="cta-buttons">
+                    <a class="btn btn-primary" href="contact.html#consultation">Book a Consultation <i class="fa-solid fa-arrow-right"></i></a>
+                    <a class="btn btn-outline-light" href="tel:+254718950180"><i class="fa-solid fa-phone"></i> Call Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div data-aos="fade-up">
+                <a href="index.html" class="footer-brand"><img src="images/makivanlogo.jpg" alt="">Makivan Consultants</a>
+                <p>Professional business consultancy services in Nairobi, Ongata Rongai and across East Africa.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="100">
+                <h3>Company</h3>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="download.html">Resources</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <h3>Services</h3>
+                <a href="kra-tax-services.html">KRA Tax Services</a>
+                <a href="business-registration-kenya.html">Business Registration</a>
+                <a href="company-annual-returns.html">Annual Returns</a>
+                <a href="hr-consulting.html">HR Consulting</a>
+                <a href="counseling-services.html">Counseling Services</a>
+                <a href="mentoring-leadership.html">Mentoring & Leadership</a>
+                <a href="business-advisory.html">Business Advisory</a>
+                <a href="small-business-loans.html">Small Business Loans</a>
+                <a href="real-estate-advisory.html">Real Estate Advisory</a>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="300">
+                <h3>Contact</h3>
+                <a href="tel:+254721433584"><i class="fa-solid fa-phone"></i> +254 721 433 584</a>
+                <a href="tel:+254718950180"><i class="fa-solid fa-phone"></i> +254 718 950 180</a>
+                <a href="mailto:info@makivanconsultants.co.ke"><i class="fa-solid fa-envelope"></i> info@makivanconsultants.co.ke</a>
+                <span><i class="fa-solid fa-location-dot"></i> Nairobi and Ongata Rongai, Kenya</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Makivan Consultants. All rights reserved.</span>
+            <span>Your success is our business.</span>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/254718950180" id="whatsappLiveChatBtn" class="live-chat-button" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>Live Chat</span>
+    </a>
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 80,
+            easing: 'ease-out-cubic',
+            disable: 'mobile'
+        });
+    </script>
+
+    <!-- ===== TAX CALCULATOR SCRIPT ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const taxType = document.getElementById('taxType');
+            const incomeAmount = document.getElementById('incomeAmount');
+            const calculateBtn = document.getElementById('calculateBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const resultsSection = document.getElementById('resultsSection');
+            const resultsContent = document.getElementById('resultsContent');
+
+            // Additional field elements
+            const payeEmployees = document.getElementById('payeEmployees');
+            const vatSales = document.getElementById('vatSales');
+            const vatPurchases = document.getElementById('vatPurchases');
+            const rentalExpenses = document.getElementById('rentalExpenses');
+
+            // Tax rate brackets for 2026
+            const taxBrackets = [
+                { upTo: 288000, rate: 10 },
+                { upTo: 388000, rate: 15 },
+                { upTo: 588000, rate: 20 },
+                { upTo: 988000, rate: 25 },
+                { above: 988000, rate: 30 }
+            ];
+
+            // Show/hide additional fields based on tax type
+            taxType.addEventListener('change', function() {
+                document.querySelectorAll('.paye-fields, .vat-fields, .rental-fields').forEach(el => el.style.display = 'none');
+
+                if (this.value === 'paye') {
+                    document.querySelector('.paye-fields').style.display = 'block';
+                } else if (this.value === 'vat') {
+                    document.querySelector('.vat-fields').style.display = 'block';
+                } else if (this.value === 'rental') {
+                    document.querySelector('.rental-fields').style.display = 'block';
+                }
+            });
+
+            // Calculate function
+            function calculateTax() {
+                const type = taxType.value;
+                const income = parseFloat(incomeAmount.value) || 0;
+
+                if (income <= 0) {
+                    alert('Please enter a valid income amount.');
+                    return;
+                }
+
+                let resultHTML = '';
+                let taxAmount = 0;
+                let effectiveRate = 0;
+
+                switch(type) {
+                    case 'income':
+                    case 'paye':
+                        // Income Tax / PAYE calculation
+                        let remaining = income;
+                        let totalTax = 0;
+
+                        for (const bracket of taxBrackets) {
+                            if (bracket.upTo !== undefined && remaining > 0) {
+                                const taxable = Math.min(remaining, bracket.upTo - (taxBrackets[taxBrackets.indexOf(bracket) - 1]?.upTo || 0));
+                                const prevUpTo = taxBrackets[taxBrackets.indexOf(bracket) - 1]?.upTo || 0;
+                                const taxableAmount = Math.min(remaining, bracket.upTo - prevUpTo);
+                                if (taxableAmount > 0) {
+                                    totalTax += taxableAmount * (bracket.rate / 100);
+                                    remaining -= taxableAmount;
+                                }
+                            } else if (bracket.above !== undefined && remaining > 0) {
+                                totalTax += remaining * (bracket.rate / 100);
+                                remaining = 0;
+                            }
+                        }
+
+                        taxAmount = totalTax;
+                        effectiveRate = (taxAmount / income) * 100;
+
+                        resultHTML = `
+                            <div class="result-row">
+                                <span>Annual Income:</span>
+                                <span class="result-value">KES ${income.toLocaleString()}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Tax Rate:</span>
+                                <span class="result-value">${effectiveRate.toFixed(1)}%</span>
+                            </div>
+                            <div class="result-row highlight">
+                                <span>Estimated Tax:</span>
+                                <span class="result-value">KES ${taxAmount.toLocaleString()}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Net Income:</span>
+                                <span class="result-value">KES ${(income - taxAmount).toLocaleString()}</span>
+                            </div>
+                            ${type === 'paye' ? `<div class="result-row"><span>Employees:</span><span class="result-value">${parseInt(payeEmployees.value) || 0}</span></div>` : ''}
+                            ${type === 'paye' ? `<div class="result-row"><span>Monthly PAYE (approx):</span><span class="result-value">KES ${(taxAmount / 12).toLocaleString()}</span></div>` : ''}
+                        `;
+                        break;
+
+                    case 'turnover':
+                        // Turnover Tax (3% of gross sales)
+                        taxAmount = income * 0.03;
+                        effectiveRate = 3;
+
+                        resultHTML = `
+                            <div class="result-row">
+                                <span>Annual Turnover:</span>
+                                <span class="result-value">KES ${income.toLocaleString()}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Tax Rate:</span>
+                                <span class="result-value">3%</span>
+                            </div>
+                            <div class="result-row highlight">
+                                <span>Estimated Tax:</span>
+                                <span class="result-value">KES ${taxAmount.toLocaleString()}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Net Income:</span>
+                                <span class="result-value">KES ${(income - taxAmount).toLocaleString()}</span>
+                            </div>
+                        `;
+                        break;
+
+                    case 'vat':
+                        // VAT Calculation (16% on sales - purchases)
+                        const sales = parseFloat(vatSales.value) || 0;
+                        const purchases = parseFloat(vatPurchases.value) || 0;
+                        const vatOnSales = sales * 0.16;
+                        const vatOnPurchases = purchases * 0.16;
+                        taxAmount = vatOnSales - vatOnPurchases;
+
+                        resultHTML = `
+                            <div class="result-row">
+                                <span>Annual Sales:</span>
+                                <span class="result-value">KES ${sales.toLocaleString()}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Annual Purchases:</span>
+                                <span class="result-value">KES ${purchases.toLocaleString()}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>VAT on Sales (16%):</span>
+                                <span class="result-value">KES ${vatOnSales.toLocaleString()}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>VAT on Purchases (16%):</span>
+                                <span class="result-value">KES ${vatOnPurchases.toLocaleString()}</span>
+                            </div>
+                            <div class="result-row highlight">
+                                <span>VAT Payable/Refundable:</span>
+                                <span class="result-value">KES ${taxAmount.toLocaleString()}</span>
+                            </div>
+                            <div class="result-row" style="border-top:2px solid var(--gold);padding-top:12px;margin-top:8px;">
+                                <span>Monthly VAT (approx):</span>
+                                <span class="result-value">KES ${(taxAmount / 12).toLocaleString()}</span>
+                            </div>
+                        `;
+                        break;
+
+                    case 'rental':
+                        // Rental Income Tax (10% of gross rental income after expenses)
+                        const expenses = parseFloat(rentalExpenses.value) || 0;
+                        const netRentalIncome = income - expenses;
+                        taxAmount = netRentalIncome * 0.10;
+                        effectiveRate = 10;
+
+                        resultHTML = `
+                            <div class="result-row">
+                                <span>Gross Rental Income:</span>
+                                <span class="result-value">KES ${income.toLocaleString()}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Annual Expenses:</span>
+                                <span class="result-value">KES ${expenses.toLocaleString()}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Net Rental Income:</span>
+                                <span class="result-value">KES ${netRentalIncome.toLocaleString()}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Tax Rate:</span>
+                                <span class="result-value">10%</span>
+                            </div>
+                            <div class="result-row highlight">
+                                <span>Estimated Tax:</span>
+                                <span class="result-value">KES ${taxAmount.toLocaleString()}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Net Income:</span>
+                                <span class="result-value">KES ${(income - taxAmount).toLocaleString()}</span>
+                            </div>
+                        `;
+                        break;
+
+                    default:
+                        resultHTML = '<p style="color:var(--muted);text-align:center;">Please select a tax type.</p>';
+                }
+
+                resultsContent.innerHTML = resultHTML;
+                resultsSection.style.display = 'block';
+                resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // Reset function
+            function resetCalculator() {
+                incomeAmount.value = '';
+                taxType.value = 'income';
+                payeEmployees.value = '';
+                vatSales.value = '';
+                vatPurchases.value = '';
+                rentalExpenses.value = '';
+                document.querySelectorAll('.paye-fields, .vat-fields, .rental-fields').forEach(el => el.style.display = 'none');
+                resultsSection.style.display = 'none';
+                resultsContent.innerHTML = '';
+                incomeAmount.focus();
+            }
+
+            // Event listeners
+            calculateBtn.addEventListener('click', calculateTax);
+            resetBtn.addEventListener('click', resetCalculator);
+
+            // Enter key support
+            incomeAmount.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    calculateTax();
+                }
+            });
+
+            // Initial focus
+            incomeAmount.focus();
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
