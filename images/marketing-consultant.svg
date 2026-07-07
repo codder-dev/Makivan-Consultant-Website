@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" role="img" aria-label="Marketing consultant illustration with African market and digital outreach themes">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d2a25"/>
+      <stop offset="100%" stop-color="#1e7668"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8e0a4"/>
+      <stop offset="100%" stop-color="#c6a15b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="900" rx="40" fill="url(#bg3)"/>
+  <circle cx="620" cy="220" r="120" fill="url(#sun)" opacity="0.9"/>
+  <path d="M70 760 C 180 620, 260 580, 370 590 C 480 600, 540 680, 730 740 L 730 820 L 70 820 Z" fill="#173f35" opacity="0.95"/>
+  <path d="M160 760 L 160 520 L 280 520 L 280 760 Z" fill="#f7efd7" opacity="0.95"/>
+  <path d="M280 760 L 280 470 L 420 470 L 420 760 Z" fill="#f2dbab" opacity="0.95"/>
+  <path d="M420 760 L 420 560 L 560 560 L 560 760 Z" fill="#f7efd7" opacity="0.95"/>
+  <rect x="170" y="560" width="92" height="70" rx="16" fill="#173f35"/>
+  <rect x="305" y="515" width="90" height="90" rx="16" fill="#173f35"/>
+  <rect x="455" y="585" width="84" height="70" rx="16" fill="#173f35"/>
+  <path d="M115 540 L 240 470" stroke="#f8e0a4" stroke-width="14" stroke-linecap="round"/>
+  <path d="M310 470 L 430 410" stroke="#f8e0a4" stroke-width="14" stroke-linecap="round"/>
+  <path d="M470 520 L 590 460" stroke="#f8e0a4" stroke-width="14" stroke-linecap="round"/>
+  <rect x="220" y="260" width="180" height="140" rx="28" fill="#fefcf6"/>
+  <rect x="250" y="290" width="120" height="86" rx="16" fill="#173f35"/>
+  <circle cx="304" cy="332" r="12" fill="#f8e0a4"/>
+  <rect x="442" y="250" width="120" height="180" rx="24" fill="#f7efd7"/>
+  <rect x="470" y="285" width="64" height="110" rx="10" fill="#173f35"/>
+  <path d="M420 238 L 386 180" stroke="#f8e0a4" stroke-width="16" stroke-linecap="round"/>
+  <path d="M560 238 L 600 180" stroke="#f8e0a4" stroke-width="16" stroke-linecap="round"/>
+  <path d="M286 182 C 326 150, 376 150, 406 182" stroke="#f8e0a4" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <path d="M430 164 C 458 132, 510 133, 536 160" stroke="#f8e0a4" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <path d="M150 190 C 182 160, 238 140, 274 158" stroke="#f8e0a4" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path d="M242 210 L 208 250" stroke="#173f35" stroke-width="10" stroke-linecap="round"/>
+  <path d="M562 220 L 602 250" stroke="#173f35" stroke-width="10" stroke-linecap="round"/>
+  <path d="M340 420 C 360 382, 394 372, 432 388" stroke="#f8e0a4" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path d="M236 600 C 278 566, 318 560, 360 590" stroke="#f8e0a4" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M430 600 C 478 572, 500 574, 538 600" stroke="#f8e0a4" stroke-width="10" fill="none" stroke-linecap="round"/>
+</svg>

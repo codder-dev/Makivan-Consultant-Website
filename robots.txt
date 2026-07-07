@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://makivanconsultants.co.ke/sitemap.xml

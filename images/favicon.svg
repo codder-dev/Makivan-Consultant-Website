@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Makivan Consultants favicon">
+  <rect width="256" height="256" rx="56" fill="#173f35"/>
+  <circle cx="128" cy="128" r="96" fill="#c6a15b" opacity="0.95"/>
+  <path d="M74 188L102 92l26 44 26-44 28 96" fill="none" stroke="#173f35" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M88 184h80" stroke="#f7efd7" stroke-width="16" stroke-linecap="round" opacity="0.9"/>
+</svg>
