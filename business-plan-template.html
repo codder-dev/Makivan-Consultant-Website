@@ -43,7 +43,7 @@
             <div data-aos="fade-up">
                 <p class="eyebrow">Business plan template</p>
                 <h1>Create your professional business plan online.</h1>
-                <p>Fill in the form below to generate a complete business plan document instantly.</p>
+                <p>Fill in all required fields to generate your complete business plan document instantly.</p>
                 <div class="hero-actions" style="justify-content:center;">
                     <a href="#template-form" class="btn btn-primary"><i class="fa-solid fa-pen"></i> Start Building</a>
                     <a href="#preview" class="btn btn-secondary">View Sample <i class="fa-solid fa-arrow-right"></i></a>
@@ -56,7 +56,7 @@
             <div class="form-container" data-aos="fade-up">
                 <div class="form-header">
                     <h2><i class="fa-solid fa-file-lines"></i> Fill in your business details</h2>
-                    <p>Complete all fields below to generate your professional business plan.</p>
+                    <p>Complete all required fields (*) to generate your professional business plan.</p>
                     <div class="form-progress">
                         <span class="progress-step active">01</span>
                         <span class="progress-line"></span>
@@ -68,17 +68,18 @@
                     </div>
                 </div>
 
-                <form id="businessPlanForm" class="business-plan-form">
-                    <!-- Section 1: Business Information -->
+                <form id="businessPlanForm" class="business-plan-form" novalidate>
+                    <!-- ===== SECTION 1: BUSINESS INFORMATION ===== -->
                     <div class="form-section active" data-section="1">
                         <h3><span class="section-number">01</span> Business Information</h3>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="businessName">Business Name *</label>
+                                <label for="businessName">Business Name <span class="required">*</span></label>
                                 <input type="text" id="businessName" placeholder="e.g. Makivan Consultants Ltd" required>
+                                <small class="field-error">Please enter your business name</small>
                             </div>
                             <div class="form-group">
-                                <label for="businessType">Business Type *</label>
+                                <label for="businessType">Business Type <span class="required">*</span></label>
                                 <select id="businessType" required>
                                     <option value="">Select...</option>
                                     <option value="Sole Proprietorship">Sole Proprietorship</option>
@@ -88,12 +89,14 @@
                                     <option value="Limited Liability Partnership (LLP)">Limited Liability Partnership (LLP)</option>
                                     <option value="Non-Profit Organization">Non-Profit Organization</option>
                                 </select>
+                                <small class="field-error">Please select a business type</small>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="businessLocation">Business Location *</label>
+                                <label for="businessLocation">Business Location <span class="required">*</span></label>
                                 <input type="text" id="businessLocation" placeholder="e.g. Nairobi, Kenya" required>
+                                <small class="field-error">Please enter your business location</small>
                             </div>
                             <div class="form-group">
                                 <label for="businessYear">Year Established</label>
@@ -101,32 +104,36 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="businessMission">Mission Statement *</label>
+                            <label for="businessMission">Mission Statement <span class="required">*</span></label>
                             <textarea id="businessMission" rows="2" placeholder="Describe your business mission and purpose..." required></textarea>
+                            <small class="field-error">Please enter your mission statement</small>
                         </div>
                         <div class="form-group">
                             <label for="businessVision">Vision Statement</label>
                             <textarea id="businessVision" rows="2" placeholder="Describe your long-term vision..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="businessDescription">Business Overview *</label>
+                            <label for="businessDescription">Business Overview <span class="required">*</span></label>
                             <textarea id="businessDescription" rows="3" placeholder="Describe your business, products/services, and what makes you unique..." required></textarea>
+                            <small class="field-error">Please enter your business overview</small>
                         </div>
                         <div class="form-nav">
                             <button type="button" class="btn btn-primary next-section">Next <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
 
-                    <!-- Section 2: Products & Services -->
+                    <!-- ===== SECTION 2: PRODUCTS & SERVICES ===== -->
                     <div class="form-section" data-section="2">
                         <h3><span class="section-number">02</span> Products & Services</h3>
                         <div class="form-group">
-                            <label for="productsServices">Products/Services Offered *</label>
+                            <label for="productsServices">Products/Services Offered <span class="required">*</span></label>
                             <textarea id="productsServices" rows="3" placeholder="List and describe your products or services..." required></textarea>
+                            <small class="field-error">Please describe your products or services</small>
                         </div>
                         <div class="form-group">
-                            <label for="uniqueValue">Unique Value Proposition *</label>
+                            <label for="uniqueValue">Unique Value Proposition <span class="required">*</span></label>
                             <textarea id="uniqueValue" rows="2" placeholder="What makes your business unique? Why should customers choose you?" required></textarea>
+                            <small class="field-error">Please enter your unique value proposition</small>
                         </div>
                         <div class="form-nav">
                             <button type="button" class="btn btn-outline prev-section"><i class="fa-solid fa-arrow-left"></i> Previous</button>
@@ -134,12 +141,13 @@
                         </div>
                     </div>
 
-                    <!-- Section 3: Target Market & Competition -->
+                    <!-- ===== SECTION 3: TARGET MARKET & COMPETITION ===== -->
                     <div class="form-section" data-section="3">
                         <h3><span class="section-number">03</span> Target Market & Competition</h3>
                         <div class="form-group">
-                            <label for="targetMarket">Target Market Description *</label>
+                            <label for="targetMarket">Target Market Description <span class="required">*</span></label>
                             <textarea id="targetMarket" rows="2" placeholder="Who are your ideal customers?" required></textarea>
+                            <small class="field-error">Please describe your target market</small>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
@@ -156,8 +164,9 @@
                             <textarea id="competitors" rows="2" placeholder="List your main competitors and their strengths/weaknesses..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="competitiveAdvantage">Competitive Advantage *</label>
+                            <label for="competitiveAdvantage">Competitive Advantage <span class="required">*</span></label>
                             <textarea id="competitiveAdvantage" rows="2" placeholder="What gives you an edge over competitors?" required></textarea>
+                            <small class="field-error">Please enter your competitive advantage</small>
                         </div>
                         <div class="form-nav">
                             <button type="button" class="btn btn-outline prev-section"><i class="fa-solid fa-arrow-left"></i> Previous</button>
@@ -165,12 +174,13 @@
                         </div>
                     </div>
 
-                    <!-- Section 4: Marketing & Financials -->
+                    <!-- ===== SECTION 4: MARKETING & FINANCIALS ===== -->
                     <div class="form-section" data-section="4">
                         <h3><span class="section-number">04</span> Marketing, Sales & Financials</h3>
                         <div class="form-group">
-                            <label for="marketingStrategy">Marketing Strategy *</label>
+                            <label for="marketingStrategy">Marketing Strategy <span class="required">*</span></label>
                             <textarea id="marketingStrategy" rows="2" placeholder="How will you reach your customers?" required></textarea>
+                            <small class="field-error">Please enter your marketing strategy</small>
                         </div>
                         <div class="form-group">
                             <label for="salesStrategy">Sales Strategy</label>
@@ -178,8 +188,9 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="projectedRevenue">Projected Revenue (Year 1) *</label>
+                                <label for="projectedRevenue">Projected Revenue (Year 1) <span class="required">*</span></label>
                                 <input type="text" id="projectedRevenue" placeholder="e.g. 5,000,000" required>
+                                <small class="field-error">Please enter your projected revenue</small>
                             </div>
                             <div class="form-group">
                                 <label for="projectedProfit">Projected Profit (Year 1)</label>
@@ -381,18 +392,67 @@
     </script>
 
     <!-- ============================================ -->
-    <!-- ===== SIMPLE BUSINESS PLAN SCRIPT ===== -->
+    <!-- ===== BUSINESS PLAN TEMPLATE SCRIPT ===== -->
     <!-- ============================================ -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
             // ============================================
-            // SECTION NAVIGATION
+            // SECTION NAVIGATION WITH VALIDATION
             // ============================================
             const sections = document.querySelectorAll('.form-section');
             let currentSection = 0;
 
+            // Get all required fields in a section
+            function getRequiredFields(section) {
+                return section.querySelectorAll('input[required], select[required], textarea[required]');
+            }
+
+            // Validate a section
+            function validateSection(section) {
+                const requiredFields = getRequiredFields(section);
+                let isValid = true;
+
+                requiredFields.forEach(field => {
+                    const errorEl = field.closest('.form-group').querySelector('.field-error');
+                    if (!field.value || field.value.trim() === '') {
+                        field.classList.add('error');
+                        if (errorEl) errorEl.style.display = 'block';
+                        isValid = false;
+                    } else {
+                        field.classList.remove('error');
+                        if (errorEl) errorEl.style.display = 'none';
+                    }
+                });
+
+                return isValid;
+            }
+
+            // Validate all sections
+            function validateAllSections() {
+                let allValid = true;
+                sections.forEach(section => {
+                    if (!validateSection(section)) {
+                        allValid = false;
+                    }
+                });
+                return allValid;
+            }
+
+            // Show section
             function showSection(index) {
+                // Validate current section before moving
+                const currentSectionEl = sections[currentSection];
+                if (!validateSection(currentSectionEl)) {
+                    // Scroll to first error
+                    const firstError = currentSectionEl.querySelector('.error');
+                    if (firstError) {
+                        firstError.focus();
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return;
+                }
+
                 sections.forEach((section, i) => {
                     section.classList.toggle('active', i === index);
                 });
@@ -409,22 +469,55 @@
                 });
             }
 
+            // Next section buttons
             document.querySelectorAll('.next-section').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const current = this.closest('.form-section');
-                    const nextIndex = parseInt(current.dataset.section);
-                    if (nextIndex < sections.length) {
-                        showSection(nextIndex);
+                    const currentIdx = parseInt(current.dataset.section) - 1;
+                    const nextIdx = currentIdx + 1;
+
+                    if (validateSection(current)) {
+                        if (nextIdx < sections.length) {
+                            showSection(nextIdx);
+                        }
                     }
                 });
             });
 
+            // Previous section buttons
             document.querySelectorAll('.prev-section').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const current = this.closest('.form-section');
-                    const prevIndex = parseInt(current.dataset.section) - 2;
-                    if (prevIndex >= 0) {
-                        showSection(prevIndex);
+                    const currentIdx = parseInt(current.dataset.section) - 1;
+                    const prevIdx = currentIdx - 1;
+
+                    if (prevIdx >= 0) {
+                        showSection(prevIdx);
+                    }
+                });
+            });
+
+            // Real-time validation on input
+            document.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
+                field.addEventListener('input', function() {
+                    const errorEl = this.closest('.form-group').querySelector('.field-error');
+                    if (this.value && this.value.trim() !== '') {
+                        this.classList.remove('error');
+                        if (errorEl) errorEl.style.display = 'none';
+                    } else {
+                        this.classList.add('error');
+                        if (errorEl) errorEl.style.display = 'block';
+                    }
+                });
+
+                field.addEventListener('change', function() {
+                    const errorEl = this.closest('.form-group').querySelector('.field-error');
+                    if (this.value && this.value.trim() !== '') {
+                        this.classList.remove('error');
+                        if (errorEl) errorEl.style.display = 'none';
+                    } else {
+                        this.classList.add('error');
+                        if (errorEl) errorEl.style.display = 'block';
                     }
                 });
             });
@@ -470,9 +563,68 @@
                 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
                 document.getElementById('previewDate').textContent = months[now.getMonth()] + ' ' + now.getFullYear();
 
-                // Scroll to preview
-                document.getElementById('preview').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Save data to localStorage
+                saveBusinessData();
             }
+
+            // ============================================
+            // SAVE TO LOCALSTORAGE
+            // ============================================
+            function saveBusinessData() {
+                const data = {
+                    businessName: document.getElementById('businessName').value,
+                    businessType: document.getElementById('businessType').value,
+                    businessLocation: document.getElementById('businessLocation').value,
+                    businessYear: document.getElementById('businessYear').value,
+                    businessMission: document.getElementById('businessMission').value,
+                    businessVision: document.getElementById('businessVision').value,
+                    businessDescription: document.getElementById('businessDescription').value,
+                    productsServices: document.getElementById('productsServices').value,
+                    uniqueValue: document.getElementById('uniqueValue').value,
+                    targetMarket: document.getElementById('targetMarket').value,
+                    marketSize: document.getElementById('marketSize').value,
+                    marketValue: document.getElementById('marketValue').value,
+                    competitors: document.getElementById('competitors').value,
+                    competitiveAdvantage: document.getElementById('competitiveAdvantage').value,
+                    marketingStrategy: document.getElementById('marketingStrategy').value,
+                    salesStrategy: document.getElementById('salesStrategy').value,
+                    projectedRevenue: document.getElementById('projectedRevenue').value,
+                    projectedProfit: document.getElementById('projectedProfit').value,
+                    fundingRequired: document.getElementById('fundingRequired').value,
+                    managementTeam: document.getElementById('managementTeam').value
+                };
+                localStorage.setItem('businessPlanData', JSON.stringify(data));
+            }
+
+            // ============================================
+            // LOAD FROM LOCALSTORAGE
+            // ============================================
+            function loadBusinessData() {
+                const saved = localStorage.getItem('businessPlanData');
+                if (saved) {
+                    try {
+                        const data = JSON.parse(saved);
+                        for (const [key, value] of Object.entries(data)) {
+                            const element = document.getElementById(key);
+                            if (element) {
+                                element.value = value || '';
+                            }
+                        }
+                        updatePreview();
+                    } catch (e) {
+                        console.log('No saved data found');
+                    }
+                }
+            }
+
+            loadBusinessData();
+
+            // Auto-save on input changes
+            document.querySelectorAll('#businessPlanForm input, #businessPlanForm select, #businessPlanForm textarea').forEach(el => {
+                el.addEventListener('input', function() {
+                    saveBusinessData();
+                });
+            });
 
             // ============================================
             // FORM SUBMISSION - GENERATE PLAN
@@ -480,7 +632,24 @@
             document.getElementById('businessPlanForm').addEventListener('submit', function(e) {
                 e.preventDefault();
 
-                // Show loading state on button
+                // Validate all sections
+                const allValid = validateAllSections();
+
+                if (!allValid) {
+                    // Find first error and scroll to it
+                    const firstError = document.querySelector('.error');
+                    if (firstError) {
+                        // Find which section the error is in
+                        const errorSection = firstError.closest('.form-section');
+                        const sectionIndex = parseInt(errorSection.dataset.section) - 1;
+                        showSection(sectionIndex);
+                        firstError.focus();
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return;
+                }
+
+                // Show loading state
                 const submitBtn = document.querySelector('.generate-plan-btn');
                 const originalText = submitBtn.innerHTML;
                 submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating...';
@@ -489,14 +658,142 @@
                 // Update preview
                 updatePreview();
 
-                // Reset button after delay
+                // Scroll to preview after delay
                 setTimeout(() => {
+                    document.getElementById('preview').scrollIntoView({ behavior: 'smooth', block: 'start' });
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
-                }, 1500);
+                }, 1000);
             });
 
+            // ============================================
+            // DOWNLOAD FUNCTIONS
+            // ============================================
+            window.downloadPDF = function() {
+                const content = document.getElementById('planPreview');
+                const businessName = document.getElementById('previewBusinessName').textContent || 'My Business Plan';
+
+                const win = window.open('', '_blank');
+                if (win) {
+                    win.document.write(`
+                        <html>
+                        <head>
+                            <title>${businessName} - Business Plan</title>
+                            <style>
+                                body { font-family: 'Times New Roman', Times, serif; max-width: 900px; margin: 40px auto; padding: 20px; line-height: 1.6; color: #222; }
+                                h1 { font-size: 28px; color: #1a3c34; text-align: center; border-bottom: 3px solid #c6a15b; padding-bottom: 10px; }
+                                .plan-subtitle { text-align: center; font-size: 18px; color: #666; margin-top: -10px; }
+                                .plan-date { text-align: center; font-size: 14px; color: #888; }
+                                .plan-section { margin: 30px 0; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+                                .plan-section h3 { font-size: 20px; color: #1a3c34; border-left: 4px solid #c6a15b; padding-left: 12px; }
+                                .plan-footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #c6a15b; font-size: 12px; color: #888; }
+                                strong { color: #1a3c34; }
+                                p { margin: 6px 0; }
+                            </style>
+                        </head>
+                        <body>
+                            ${content.innerHTML}
+                            <div class="plan-footer">
+                                <p>Prepared by Makivan Consultants | © ${new Date().getFullYear()}</p>
+                            </div>
+                            <script>
+                                window.print();
+                                setTimeout(function(){ window.close(); }, 1000);
+                            <\/script>
+                        </body>
+                        </html>
+                    `);
+                    win.document.close();
+                } else {
+                    alert('Please allow pop-ups to download the PDF.');
+                }
+            };
+
+            window.downloadWord = function() {
+                const content = document.getElementById('planPreview');
+                const businessName = document.getElementById('previewBusinessName').textContent || 'My Business Plan';
+
+                const htmlContent = `
+                    <html xmlns:o="urn:schemas-microsoft-com:office:office" 
+                          xmlns:w="urn:schemas-microsoft-com:office:word" 
+                          xmlns="http://www.w3.org/TR/REC-html40">
+                    <head>
+                        <title>${businessName} - Business Plan</title>
+                        <style>
+                            body { font-family: 'Times New Roman', Times, serif; max-width: 900px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+                            h1 { font-size: 28px; color: #1a3c34; text-align: center; border-bottom: 3px solid #c6a15b; padding-bottom: 10px; }
+                            .plan-subtitle { text-align: center; font-size: 18px; color: #666; margin-top: -10px; }
+                            .plan-date { text-align: center; font-size: 14px; color: #888; }
+                            .plan-section { margin: 30px 0; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+                            .plan-section h3 { font-size: 20px; color: #1a3c34; border-left: 4px solid #c6a15b; padding-left: 12px; }
+                            .plan-footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #c6a15b; font-size: 12px; color: #888; }
+                            strong { color: #1a3c34; }
+                            p { margin: 6px 0; }
+                        </style>
+                    </head>
+                    <body>
+                        ${content.innerHTML}
+                        <div class="plan-footer">
+                            <p>Prepared by Makivan Consultants | © ${new Date().getFullYear()}</p>
+                            <p>${document.getElementById('previewDate')?.textContent || ''}</p>
+                        </div>
+                    </body>
+                    </html>
+                `;
+
+                const blob = new Blob([htmlContent], { type: 'application/msword' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `${businessName.replace(/\s+/g, '_')}_Business_Plan.doc`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            };
+
+            window.printPlan = function() {
+                const content = document.getElementById('planPreview');
+                const businessName = document.getElementById('previewBusinessName').textContent || 'Business Plan';
+
+                const win = window.open('', '_blank');
+                if (win) {
+                    win.document.write(`
+                        <html>
+                        <head>
+                            <title>${businessName} - Business Plan</title>
+                            <style>
+                                body { font-family: 'Times New Roman', Times, serif; max-width: 900px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+                                h1 { font-size: 28px; color: #1a3c34; text-align: center; border-bottom: 3px solid #c6a15b; padding-bottom: 10px; }
+                                .plan-subtitle { text-align: center; font-size: 18px; color: #666; margin-top: -10px; }
+                                .plan-date { text-align: center; font-size: 14px; color: #888; }
+                                .plan-section { margin: 30px 0; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+                                .plan-section h3 { font-size: 20px; color: #1a3c34; border-left: 4px solid #c6a15b; padding-left: 12px; }
+                                .plan-footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #c6a15b; font-size: 12px; color: #888; }
+                                strong { color: #1a3c34; }
+                                p { margin: 6px 0; }
+                                @media print { body { margin: 0; padding: 20px; } }
+                            </style>
+                        </head>
+                        <body>
+                            ${content.innerHTML}
+                            <div class="plan-footer">
+                                <p>Prepared by Makivan Consultants | © ${new Date().getFullYear()}</p>
+                            </div>
+                            <script>
+                                window.print();
+                            <\/script>
+                        </body>
+                        </html>
+                    `);
+                    win.document.close();
+                } else {
+                    alert('Please allow pop-ups to print.');
+                }
+            };
+
             console.log('🚀 Business Plan Template Loaded Successfully!');
+            console.log('📋 All required fields must be filled before proceeding.');
 
         });
     </script>
