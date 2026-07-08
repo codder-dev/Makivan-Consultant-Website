@@ -2968,6 +2968,248 @@ small {
 .progress-step.completed + .progress-line {
     background: var(--gold);
 }
+/* ============================================
+   TAX CALCULATOR RESULTS
+   ============================================ */
+.result-summary {
+    max-width: 100%;
+}
+
+.result-section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--forest);
+    padding: 12px 16px;
+    background: var(--soft);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.result-section-title i {
+    color: var(--gold);
+}
+
+.result-subsection {
+    margin: 10px 0;
+    padding: 4px 0;
+}
+
+.result-subtitle {
+    font-weight: 700;
+    color: var(--forest);
+    font-size: 14px;
+    padding: 4px 0 8px 0;
+    border-bottom: 1px solid var(--soft);
+    margin-bottom: 6px;
+}
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    font-size: 15px;
+    align-items: center;
+}
+
+.result-row:last-child {
+    border-bottom: none;
+}
+
+.result-row.highlight {
+    background: var(--soft);
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin: 4px 0;
+    border-bottom: none;
+}
+
+.result-row .result-value {
+    font-weight: 700;
+    color: var(--forest);
+    text-align: right;
+}
+
+.result-row.highlight .result-value {
+    font-size: 16px;
+}
+
+.result-row.highlight[style*="var(--gold-2)"] .result-value {
+    font-size: 20px;
+}
+
+.result-row.highlight[style*="var(--forest)"] {
+    padding: 10px 14px;
+}
+
+.result-row.highlight[style*="var(--forest)"] .result-value {
+    color: var(--gold-2);
+}
+
+.result-row.highlight[style*="var(--forest)"] span {
+    color: var(--white);
+}
+
+/* Results Note */
+.results-note {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    background: #fff8e7;
+    border-radius: 10px;
+    margin: 16px 0;
+    border-left: 4px solid var(--gold);
+}
+
+.results-note i {
+    color: var(--gold);
+    font-size: 18px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.results-note p {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+}
+
+.results-link {
+    color: var(--teal);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.results-link:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   RADIO & CHECKBOX GROUPS
+   ============================================ */
+.radio-group,
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    margin-top: 6px;
+}
+
+.radio-label,
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--ink);
+    padding: 4px 0;
+}
+
+.radio-label input,
+.checkbox-label input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.radio-custom,
+.checkbox-custom {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--line);
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.checkbox-custom {
+    border-radius: 4px;
+}
+
+.radio-label input:checked + .radio-custom {
+    border-color: var(--gold);
+    border-width: 2px;
+}
+
+.radio-label input:checked + .radio-custom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+}
+
+.checkbox-label input:checked + .checkbox-custom {
+    border-color: var(--gold);
+    background: var(--gold);
+}
+
+.checkbox-label input:checked + .checkbox-custom::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.radio-label:hover .radio-custom,
+.checkbox-label:hover .checkbox-custom {
+    border-color: var(--gold);
+}
+
+.radio-label input:checked + .radio-custom {
+    border-color: var(--gold);
+}
+
+.checkbox-label input:checked + .checkbox-custom {
+    border-color: var(--gold);
+    background: var(--gold);
+}
+
+/* ============================================
+   SECTION LABELS
+   ============================================ */
+.section-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-label i {
+    color: var(--gold);
+    font-size: 14px;
+}
+
+/* ============================================
+   FORM ROW
+   ============================================ */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+
+
 
 /* ============================================
    FORM SECTION NAVIGATION
@@ -3486,6 +3728,7 @@ small {
     }
 }
 
+
 /* MOBILE LARGE */
 @media (max-width: 600px) {
     :root {
@@ -3853,6 +4096,52 @@ small {
         font-size: 14px;
         flex-wrap: wrap;
         gap: 4px;
+    }
+}
+@media (max-width: 600px) {
+    .radio-group,
+    .checkbox-group {
+        gap: 6px 14px;
+    }
+
+    .radio-label,
+    .checkbox-label {
+        font-size: 13px;
+        padding: 2px 0;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+/* Responsive */
+@media (max-width: 600px) {
+    .result-section-title {
+        font-size: 16px;
+        padding: 10px 12px;
+    }
+
+    .result-row {
+        font-size: 14px;
+        flex-wrap: wrap;
+        gap: 2px;
+        padding: 5px 0;
+    }
+
+    .result-row .result-value {
+        font-size: 14px;
+    }
+
+    .result-row.highlight .result-value {
+        font-size: 15px;
+    }
+
+    .result-row.highlight[style*="var(--gold-2)"] .result-value {
+        font-size: 17px;
+    }
+
+    .result-subtitle {
+        font-size: 13px;
     }
 }
 
