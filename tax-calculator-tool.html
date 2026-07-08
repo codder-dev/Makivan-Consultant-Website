@@ -495,30 +495,30 @@
                 const employerNSSF = nssf.employer;
 
                 // ============================================
-                // 2. Taxable Pay (Gross - NSSF Employee)
+                // 2. SHIF Calculation
                 // ============================================
-                const taxablePay = grossSalary - employeeNSSF;
+                const shif = includeSHIF ? calculateSHIF(grossSalary) : 0;
 
                 // ============================================
-                // 3. PAYE Calculation
+                // 3. Housing Levy Calculation
+                // ============================================
+                const housingLevy = includeHousing ? grossSalary * HOUSING_LEVY_RATE : 0;
+
+                // ============================================
+                // 4. Taxable Pay (Gross - NSSF - SHIF - Housing Levy)
+                // ============================================
+                const taxablePay = grossSalary - employeeNSSF - shif - housingLevy;
+
+                // ============================================
+                // 5. PAYE Calculation
                 // ============================================
                 const grossPAYE = calculatePAYE(taxablePay);
                 const netPAYE = Math.max(0, grossPAYE - PERSONAL_RELIEF);
 
                 // ============================================
-                // 4. SHIF Calculation
-                // ============================================
-                const shif = includeSHIF ? calculateSHIF(grossSalary) : 0;
-
-                // ============================================
-                // 5. Housing Levy Calculation
-                // ============================================
-                const housingLevy = includeHousing ? grossSalary * HOUSING_LEVY_RATE : 0;
-
-                // ============================================
                 // 6. Totals
                 // ============================================
-                const totalEmployeeDeductions = employeeNSSF + netPAYE + shif + housingLevy;
+                const totalEmployeeDeductions = employeeNSSF + shif + housingLevy + netPAYE;
                 const netSalary = grossSalary - totalEmployeeDeductions;
                 const totalEmployerCost = grossSalary + employerNSSF + shif + housingLevy;
 
@@ -587,7 +587,7 @@
                         <div class="result-subsection">
                             <div class="result-subtitle">Tax Calculation</div>
                             <div class="result-row">
-                                <span>Taxable Pay (Gross - NSSF):</span>
+                                <span>Taxable Pay (Gross - NSSF - SHIF - Housing):</span>
                                 <span class="result-value">${formatCurrency(taxablePay)}</span>
                             </div>
                             <div class="result-row">
@@ -727,12 +727,11 @@
 
             console.log('🚀 KRA iTax Calculator Loaded Successfully!');
             console.log('📊 Using exact KRA rates for 2025/2026');
+            console.log('📋 Taxable Pay = Gross - NSSF - SHIF - Housing Levy');
             console.log('📋 PAYE Bands: 10%, 25%, 30%, 32.5%, 35%');
-            console.log('📋 NSSF Employee: Tier 1 ONLY (6% up to 9,000)');
-            console.log('📋 NSSF Employer: Tier 1 + Tier 2');
+            console.log('📋 NSSF Employee: Tier 1 ONLY');
             console.log('📋 SHIF: 300 (low income) or 2.75%');
             console.log('📋 Housing Levy: 1.5%');
-            console.log('📋 Personal Relief: KES 2,400');
         });
     </script>
     <script src="script.js"></script>
