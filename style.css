@@ -3301,6 +3301,72 @@ select:valid:not(:placeholder-shown) + .field-error,
 textarea:valid:not(:placeholder-shown) + .field-error {
     display: none !important;
 }
+/* ============================================
+   SUCCESS MESSAGE ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes progressBar {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+/* ============================================
+   FORM VALIDATION STYLES
+   ============================================ */
+.required {
+    color: #b3261e;
+    font-weight: 700;
+}
+
+.field-error {
+    display: none;
+    color: #b3261e;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 4px;
+    padding: 4px 8px;
+    background: #fef2f2;
+    border-radius: 4px;
+    border-left: 3px solid #b3261e;
+}
+
+input.error,
+select.error,
+textarea.error {
+    border-color: #b3261e !important;
+    background: #fef2f2 !important;
+    box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.12) !important;
+}
+
+input.error:focus,
+select.error:focus,
+textarea.error:focus {
+    border-color: #b3261e !important;
+    box-shadow: 0 0 0 4px rgba(179, 38, 30, 0.2) !important;
+}
+
+/* Valid state */
+input:valid:not(:placeholder-shown),
+select:valid:not(:placeholder-shown),
+textarea:valid:not(:placeholder-shown) {
+    border-color: #0f5132;
+}
+
+input:valid:not(:placeholder-shown) + .field-error,
+select:valid:not(:placeholder-shown) + .field-error,
+textarea:valid:not(:placeholder-shown) + .field-error {
+    display: none !important;
+}
 
 /* ============================================
    SEO LINKS

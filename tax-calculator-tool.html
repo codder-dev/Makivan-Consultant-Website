@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KRA iTax Calculator | Makivan Consultants</title>
-    <meta name="description" content="Complete KRA iTax calculator for Kenya. Calculate PAYE, NSSF, SHIF, Housing Levy with Gross, Basic, and Net Pay options.">
+    <meta name="description" content="Complete KRA iTax calculator for Kenya. Calculates PAYE, NSSF, SHIF, Housing Levy with exact KRA rates.">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#173f35">
     <link rel="canonical" href="https://makivanconsultants.co.ke/tax-calculator-tool.html">
     <meta property="og:type" content="website">
     <meta property="og:title" content="KRA iTax Calculator | Makivan Consultants">
-    <meta property="og:description" content="Complete KRA iTax calculator with Gross, Basic, and Net Pay options.">
+    <meta property="og:description" content="Complete KRA iTax calculator with exact rates for PAYE, NSSF, SHIF, and Housing Levy.">
     <meta property="og:url" content="https://makivanconsultants.co.ke/tax-calculator-tool.html">
     <meta property="og:image" content="https://makivanconsultants.co.ke/images/taxconsultation.jpeg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Makivan Consultants | iTax Calculator">
     <meta name="twitter:description" content="Complete KRA iTax calculator for Kenya.">
     <meta name="twitter:image" content="https://makivanconsultants.co.ke/images/taxconsultation.jpeg">
-    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="icon" type="image/jpeg" href="images/makivanlogo.jpg">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -31,7 +31,7 @@
         <nav class="site-nav" id="navmenu" aria-label="Primary navigation">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
-            <a href="services.html" class="active">Services</a>
+            <a href="services.html">Services</a>
             <a href="download.html">Resources</a>
             <a href="contact.html" class="nav-cta">Consult Us</a>
         </nav>
@@ -43,7 +43,7 @@
             <div data-aos="fade-up">
                 <p class="eyebrow">KRA iTax calculator</p>
                 <h1>Complete KRA iTax Calculator for Kenya.</h1>
-                <p>Calculate PAYE, NSSF, SHIF, Housing Levy with Gross, Basic, or Net Pay options.</p>
+                <p>Calculate PAYE, NSSF, SHIF, Housing Levy with exact KRA rates (2025/2026).</p>
             </div>
         </section>
 
@@ -55,130 +55,54 @@
                         <i class="fa-solid fa-calculator"></i>
                         <div>
                             <h2>KRA iTax Calculator</h2>
-                            <p>Select your pay type and enter the amount to calculate all deductions.</p>
+                            <p>Enter your monthly gross salary for an exact tax breakdown.</p>
                         </div>
                     </div>
 
                     <form id="taxCalculatorForm">
-                        <!-- ===== SECTION 1: EMPLOYMENT TYPE ===== -->
+                        <!-- ===== INCOME INPUT ===== -->
                         <div class="calculator-section">
-                            <h4 class="section-label"><i class="fa-solid fa-user"></i> Employment Type</h4>
-                            <div class="radio-group">
-                                <label class="radio-label">
-                                    <input type="radio" name="employmentType" value="regular" checked>
-                                    <span class="radio-custom"></span>
-                                    Regular Employee
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="employmentType" value="director">
-                                    <span class="radio-custom"></span>
-                                    Company Director
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="employmentType" value="contract">
-                                    <span class="radio-custom"></span>
-                                    Contract Employee
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="employmentType" value="self">
-                                    <span class="radio-custom"></span>
-                                    Self-Employed
-                                </label>
-                            </div>
-                            <div id="employmentTypeInfo" class="info-box" style="margin-top:10px;padding:10px 14px;background:var(--soft);border-radius:8px;font-size:13px;color:var(--muted);">
-                                <i class="fa-solid fa-info-circle"></i>
-                                <span id="employmentTypeMessage">Regular Employee: Full deductions apply (NSSF, SHA, Housing Levy, PAYE).</span>
-                            </div>
-                        </div>
-
-                        <!-- ===== SECTION 2: PAY TYPE ===== -->
-                        <div class="calculator-section">
-                            <h4 class="section-label"><i class="fa-solid fa-money-bill-wave"></i> Pay Type</h4>
-                            <div class="radio-group">
-                                <label class="radio-label">
-                                    <input type="radio" name="payType" value="gross" checked>
-                                    <span class="radio-custom"></span>
-                                    Gross Pay
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="payType" value="basic">
-                                    <span class="radio-custom"></span>
-                                    Basic Pay
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="payType" value="net">
-                                    <span class="radio-custom"></span>
-                                    Net Pay
-                                </label>
-                            </div>
-                            <div id="payTypeInfo" class="info-box" style="margin-top:10px;padding:10px 14px;background:var(--soft);border-radius:8px;font-size:13px;color:var(--muted);">
-                                <i class="fa-solid fa-info-circle"></i>
-                                <span id="payTypeMessage">Gross Pay: Enter total salary before deductions.</span>
-                            </div>
-                        </div>
-
-                        <!-- ===== SECTION 3: INCOME INPUT ===== -->
-                        <div class="calculator-section">
-                            <h4 class="section-label"><i class="fa-solid fa-input"></i> Enter Amount (KES)</h4>
+                            <h4 class="section-label"><i class="fa-solid fa-input"></i> Monthly Gross Salary (KES)</h4>
                             <div class="input-wrapper">
                                 <span class="input-prefix">KES</span>
-                                <input type="number" id="incomeAmount" class="calculator-input" placeholder="e.g. 100000" min="0" step="100" value="100000">
+                                <input type="number" id="grossSalary" class="calculator-input" placeholder="e.g. 100000" min="0" step="100" value="100000">
                             </div>
                         </div>
 
-                        <!-- ===== SECTION 4: BENEFITS (Only for Basic Pay) ===== -->
-                        <div class="calculator-section" id="benefitsSection">
-                            <h4 class="section-label"><i class="fa-solid fa-gift"></i> Benefits / Allowances (KES)</h4>
-                            <div class="input-wrapper">
-                                <span class="input-prefix">KES</span>
-                                <input type="number" id="benefits" class="calculator-input" placeholder="e.g. 10000" min="0" step="100" value="0">
-                            </div>
-                            <small style="display:block;color:var(--muted);font-size:12px;margin-top:4px;">Only applicable when using Basic Pay. These are added to Basic Pay to get Gross Pay.</small>
-                        </div>
-
-                        <!-- ===== SECTION 5: NSSF OPTIONS ===== -->
+                        <!-- ===== NSSF YEAR SELECTION ===== -->
                         <div class="calculator-section">
-                            <h4 class="section-label"><i class="fa-solid fa-piggy-bank"></i> NSSF Options</h4>
+                            <h4 class="section-label"><i class="fa-solid fa-piggy-bank"></i> NSSF Year</h4>
                             <div class="radio-group">
                                 <label class="radio-label">
-                                    <input type="radio" name="nssfOption" value="tier1" checked>
+                                    <input type="radio" name="nssfYear" value="2026" checked>
                                     <span class="radio-custom"></span>
-                                    Tier I (6% up to 8,000 KES)
+                                    2026 (Tier 1: 9,000 | Tier 2: 108,000)
                                 </label>
                                 <label class="radio-label">
-                                    <input type="radio" name="nssfOption" value="both">
+                                    <input type="radio" name="nssfYear" value="2025">
                                     <span class="radio-custom"></span>
-                                    Tier I & II (6% up to 18,000 KES)
+                                    2025 (Tier 1: 8,000 | Tier 2: 72,000)
                                 </label>
                                 <label class="radio-label">
-                                    <input type="radio" name="nssfOption" value="old">
+                                    <input type="radio" name="nssfYear" value="2024">
                                     <span class="radio-custom"></span>
-                                    Old Rates (5% up to 400 KES)
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="nssfOption" value="custom">
-                                    <span class="radio-custom"></span>
-                                    Custom NSSF Amount
+                                    2024 (Tier 1: 7,000 | Tier 2: 36,000)
                                 </label>
                             </div>
-                            <div id="customNssfContainer" style="display:none;margin-top:10px;">
-                                <label for="customNssf">Custom NSSF Contribution (KES)</label>
-                                <input type="number" id="customNssf" class="calculator-input" placeholder="e.g. 500" min="0" step="10">
-                            </div>
-                            <div id="nssfInfo" class="info-box" style="margin-top:10px;padding:10px 14px;background:var(--soft);border-radius:8px;font-size:13px;color:var(--muted);">
+                            <div class="info-box" style="margin-top:10px;">
                                 <i class="fa-solid fa-info-circle"></i>
-                                <span id="nssfMessage">Tier I: 6% of pensionable pay up to KES 8,000.</span>
+                                <span id="nssfInfo">2026: Tier 1: 6% up to 9,000 | Tier 2: 6% from 9,001 to 108,000</span>
                             </div>
                         </div>
 
-                        <!-- ===== SECTION 6: ADDITIONAL DEDUCTIONS ===== -->
+                        <!-- ===== ADDITIONAL DEDUCTIONS ===== -->
                         <div class="calculator-section">
                             <h4 class="section-label"><i class="fa-solid fa-list-check"></i> Additional Deductions</h4>
                             <div class="checkbox-group">
                                 <label class="checkbox-label">
-                                    <input type="checkbox" id="includeSHA" checked>
+                                    <input type="checkbox" id="includeSHIF" checked>
                                     <span class="checkbox-custom"></span>
-                                    SHA (2.75%)
+                                    SHIF (2.75% or 300 KES)
                                 </label>
                                 <label class="checkbox-label">
                                     <input type="checkbox" id="includeHousing" checked>
@@ -186,16 +110,6 @@
                                     Housing Levy (1.5%)
                                 </label>
                             </div>
-                        </div>
-
-                        <!-- ===== SECTION 7: OTHER DEDUCTIONS ===== -->
-                        <div class="calculator-section">
-                            <h4 class="section-label"><i class="fa-solid fa-file-invoice"></i> Other Deductions</h4>
-                            <div class="input-wrapper">
-                                <span class="input-prefix">KES</span>
-                                <input type="number" id="otherDeductions" class="calculator-input" placeholder="e.g. 2000" min="0" step="100" value="0">
-                            </div>
-                            <small style="display:block;color:var(--muted);font-size:12px;margin-top:4px;">e.g., Loan repayments, SACCO contributions, etc.</small>
                         </div>
 
                         <!-- ===== CALCULATE BUTTON ===== -->
@@ -215,7 +129,7 @@
                         </div>
                         <div class="results-note">
                             <i class="fa-solid fa-info-circle"></i>
-                            <p>This is an estimate based on current KRA rates (2026). For official filings, consult a tax professional. <a href="contact.html#consultation" class="results-link">Book a consultation</a> with our experts.</p>
+                            <p>This is an estimate based on current KRA rates (2025/2026). For official filings, consult a tax professional. <a href="contact.html#consultation" class="results-link">Book a consultation</a> with our experts.</p>
                         </div>
                         <button id="resetBtn" class="btn btn-outline reset-btn">
                             <i class="fa-solid fa-rotate-left"></i> Reset
@@ -226,50 +140,50 @@
                 <!-- ===== SIDEBAR ===== -->
                 <div class="calculator-sidebar">
                     <div class="sidebar-card">
-                        <h3><i class="fa-solid fa-info-circle"></i> 2026 Tax Rates</h3>
+                        <h3><i class="fa-solid fa-info-circle"></i> 2025/2026 Tax Rates</h3>
                         <div class="sidebar-item">
-                            <span>NSSF Tier I:</span>
-                            <span>6% up to 8,000</span>
+                            <span>PAYE Band 1:</span>
+                            <span>10% (0 - 24,000)</span>
                         </div>
                         <div class="sidebar-item">
-                            <span>NSSF Tier II:</span>
-                            <span>6% up to 18,000</span>
+                            <span>PAYE Band 2:</span>
+                            <span>25% (24,001 - 32,333)</span>
                         </div>
                         <div class="sidebar-item">
-                            <span>SHA Rate:</span>
+                            <span>PAYE Band 3:</span>
+                            <span>30% (32,334 - 500,000)</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span>PAYE Band 4:</span>
+                            <span>32.5% (500,001 - 800,000)</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span>PAYE Band 5:</span>
+                            <span>35% (Above 800,000)</span>
+                        </div>
+                        <div class="sidebar-item" style="border-top:1px solid var(--soft);padding-top:8px;margin-top:4px;">
+                            <span>Personal Relief:</span>
+                            <span>KES 2,400/mo</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span>NSSF Tier 1 (2026):</span>
+                            <span>6% up to 9,000</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span>NSSF Tier 2 (2026):</span>
+                            <span>6% up to 108,000</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span>SHIF (Low Income):</span>
+                            <span>KES 300 (0 - 5,999)</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span>SHIF (Above 6,000):</span>
                             <span>2.75%</span>
                         </div>
                         <div class="sidebar-item">
                             <span>Housing Levy:</span>
                             <span>1.5%</span>
-                        </div>
-                        <div class="sidebar-item">
-                            <span>Personal Relief:</span>
-                            <span>KES 2,400/mo</span>
-                        </div>
-                        <div class="sidebar-item" style="border-bottom:1px solid var(--soft);padding-bottom:8px;">
-                            <span>PAYE Bands:</span>
-                            <span>10% - 35%</span>
-                        </div>
-                        <div class="sidebar-item" style="font-size:12px;color:var(--muted);border-bottom:none;padding-top:4px;">
-                            <span>10%:</span>
-                            <span>0 - 24,000</span>
-                        </div>
-                        <div class="sidebar-item" style="font-size:12px;color:var(--muted);border-bottom:none;">
-                            <span>25%:</span>
-                            <span>24,001 - 32,333</span>
-                        </div>
-                        <div class="sidebar-item" style="font-size:12px;color:var(--muted);border-bottom:none;">
-                            <span>30%:</span>
-                            <span>32,334 - 500,000</span>
-                        </div>
-                        <div class="sidebar-item" style="font-size:12px;color:var(--muted);border-bottom:none;">
-                            <span>32.5%:</span>
-                            <span>500,001 - 800,000</span>
-                        </div>
-                        <div class="sidebar-item" style="font-size:12px;color:var(--muted);border-bottom:none;">
-                            <span>35%:</span>
-                            <span>Above 800,000</span>
                         </div>
                     </div>
 
@@ -297,24 +211,24 @@
             </div>
             <div class="faq-list">
                 <details data-aos="fade-up" data-aos-delay="100">
-                    <summary><i class="fa-solid fa-plus"></i> What is the difference between Gross Pay, Basic Pay, and Net Pay?</summary>
-                    <p><strong>Gross Pay:</strong> Total salary before any deductions. <strong>Basic Pay:</strong> Base salary without allowances. <strong>Net Pay:</strong> Take-home salary after all deductions.</p>
+                    <summary><i class="fa-solid fa-plus"></i> What are the current PAYE tax bands?</summary>
+                    <p>10% on first 24,000; 25% on next 8,333; 30% on next 467,667; 32.5% on next 300,000; 35% on amounts above 800,000.</p>
                 </details>
                 <details data-aos="fade-up" data-aos-delay="150">
-                    <summary><i class="fa-solid fa-plus"></i> How does the calculator work with Net Pay?</summary>
-                    <p>When you select Net Pay, the calculator works backwards to find your Gross Salary, then calculates all deductions from that Gross amount.</p>
+                    <summary><i class="fa-solid fa-plus"></i> What are the NSSF rates for 2026?</summary>
+                    <p>Tier 1: 6% of pensionable pay up to 9,000 (max 540 per side). Tier 2: 6% from 9,001 to 108,000 (max 5,940 per side).</p>
                 </details>
                 <details data-aos="fade-up" data-aos-delay="200">
-                    <summary><i class="fa-solid fa-plus"></i> What are the NSSF Tier options?</summary>
-                    <p>Tier I: 6% up to KES 8,000. Tier I & II: 6% up to KES 18,000. Old Rates: 5% up to KES 400. Custom: Enter your own NSSF amount.</p>
+                    <summary><i class="fa-solid fa-plus"></i> How is SHIF calculated?</summary>
+                    <p>For income below 6,000: KES 300. For income 6,000 and above: 2.75% of gross salary.</p>
                 </details>
                 <details data-aos="fade-up" data-aos-delay="250">
-                    <summary><i class="fa-solid fa-plus"></i> What is the personal relief?</summary>
-                    <p>Personal relief is KES 2,400 per month (KES 28,800 per year) deducted from your gross PAYE to reduce your tax burden.</p>
+                    <summary><i class="fa-solid fa-plus"></i> What is the Housing Levy rate?</summary>
+                    <p>The Housing Levy is 1.5% of gross salary, matched by an equal employer contribution.</p>
                 </details>
                 <details data-aos="fade-up" data-aos-delay="300">
-                    <summary><i class="fa-solid fa-plus"></i> What is SHA?</summary>
-                    <p>SHA (Social Health Insurance Fund) replaced NHIF. It's 2.75% of gross salary for health insurance coverage.</p>
+                    <summary><i class="fa-solid fa-plus"></i> What is the personal relief amount?</summary>
+                    <p>Personal relief is KES 2,400 per month (KES 28,800 per year) deducted from your PAYE.</p>
                 </details>
             </div>
         </section>
@@ -407,524 +321,374 @@
             // ELEMENTS
             // ============================================
             const form = document.getElementById('taxCalculatorForm');
-            const incomeAmount = document.getElementById('incomeAmount');
-            const customNssfContainer = document.getElementById('customNssfContainer');
-            const customNssf = document.getElementById('customNssf');
+            const grossSalaryInput = document.getElementById('grossSalary');
+            const calculateBtn = document.getElementById('calculateBtn');
+            const resetBtn = document.getElementById('resetBtn');
             const resultsSection = document.getElementById('resultsSection');
             const resultsContent = document.getElementById('resultsContent');
-            const resetBtn = document.getElementById('resetBtn');
 
             // ============================================
-            // EMPLOYMENT TYPE INFO MESSAGES
+            // TAX CONSTANTS (Based on KRA Rates)
             // ============================================
-            const employmentMessages = {
-                'regular': 'Regular Employee: Full deductions apply (NSSF, SHA, Housing Levy, PAYE). Employer also contributes.',
-                'director': 'Company Director: NSSF and SHA may be optional. PAYE still applies. Check with KRA for specific rules.',
-                'contract': 'Contract Employee: NSSF and SHA may be optional. PAYE applies based on contract terms.',
-                'self': 'Self-Employed: No PAYE deducted at source. You file your own taxes. NSSF, SHA, and Housing Levy are optional.'
-            };
 
-            const payTypeMessages = {
-                'gross': 'Gross Pay: Enter total salary before any deductions. All calculations are based on this amount.',
-                'basic': 'Basic Pay: Enter base salary. Benefits/Allowances will be added to get Gross Pay.',
-                'net': 'Net Pay: Enter your desired take-home salary. The calculator works backwards to find your Gross Pay.'
-            };
+            // PAYE Bands (2025 - From 1st July 2023)
+            // Monthly Taxable Income
+            const PAYE_BANDS = [
+                { upTo: 24000, rate: 0.10 },
+                { upTo: 32333, rate: 0.25 },
+                { upTo: 500000, rate: 0.30 },
+                { upTo: 800000, rate: 0.325 },
+                { above: 800000, rate: 0.35 }
+            ];
 
-            const nssfMessages = {
-                'tier1': 'Tier I: 6% of pensionable pay up to KES 8,000. Total NSSF = 6% of income (capped at 8,000).',
-                'both': 'Tier I & II: 6% up to 18,000. Tier I: 6% of 8,000 + Tier II: 6% of (income - 8,000) capped at 10,000.',
-                'old': 'Old Rates: 5% of pensionable pay up to KES 400. Total NSSF = 5% of income (capped at 400).',
-                'custom': 'Custom: Enter your own NSSF contribution amount. This will be used for all calculations.'
-            };
-
-            // ============================================
-            // UPDATE INFO MESSAGES
-            // ============================================
-            function updateEmploymentInfo() {
-                const value = document.querySelector('input[name="employmentType"]:checked').value;
-                document.getElementById('employmentTypeMessage').textContent = employmentMessages[value] || '';
-            }
-
-            function updatePayTypeInfo() {
-                const value = document.querySelector('input[name="payType"]:checked').value;
-                document.getElementById('payTypeMessage').textContent = payTypeMessages[value] || '';
-                // Show/hide benefits section
-                document.getElementById('benefitsSection').style.display = value === 'basic' ? 'block' : 'none';
-            }
-
-            function updateNssfInfo() {
-                const value = document.querySelector('input[name="nssfOption"]:checked').value;
-                document.getElementById('nssfMessage').textContent = nssfMessages[value] || '';
-                // Show/hide custom NSSF input
-                customNssfContainer.style.display = value === 'custom' ? 'block' : 'none';
-            }
-
-            // ============================================
-            // EVENT LISTENERS FOR INFO UPDATES
-            // ============================================
-            document.querySelectorAll('input[name="employmentType"]').forEach(radio => {
-                radio.addEventListener('change', updateEmploymentInfo);
-            });
-
-            document.querySelectorAll('input[name="payType"]').forEach(radio => {
-                radio.addEventListener('change', updatePayTypeInfo);
-            });
-
-            document.querySelectorAll('input[name="nssfOption"]').forEach(radio => {
-                radio.addEventListener('change', updateNssfInfo);
-            });
-
-            // ============================================
-            // NSSF CALCULATION FUNCTION
-            // ============================================
-            function calculateNSSF(salary, option, customValue) {
-                if (option === 'tier1') {
-                    return Math.min(salary, 8000) * 0.06;
-                } else if (option === 'both') {
-                    const tier1 = Math.min(salary, 8000) * 0.06;
-                    const tier2 = Math.min(Math.max(salary - 8000, 0), 10000) * 0.06;
-                    return tier1 + tier2;
-                } else if (option === 'old') {
-                    return Math.min(salary, 400) * 0.05;
-                } else if (option === 'custom') {
-                    return customValue;
+            // NSSF Tiers by Year
+            const NSSF_RATES = {
+                '2026': {
+                    tier1: { upTo: 9000, rate: 0.06 },
+                    tier2: { from: 9001, upTo: 108000, rate: 0.06 }
+                },
+                '2025': {
+                    tier1: { upTo: 8000, rate: 0.06 },
+                    tier2: { from: 8001, upTo: 72000, rate: 0.06 }
+                },
+                '2024': {
+                    tier1: { upTo: 7000, rate: 0.06 },
+                    tier2: { from: 7001, upTo: 36000, rate: 0.06 }
                 }
-                return 0;
-            }
+            };
 
-            function getNssfLabel(option) {
-                if (option === 'tier1') return 'Tier I (6% up to 8,000)';
-                if (option === 'both') return 'Tier I & II (6% up to 18,000)';
-                if (option === 'old') return 'Old Rates (5% up to 400)';
-                if (option === 'custom') return 'Custom NSSF Amount';
-                return '';
+            // SHIF: 300 for income below 6,000, else 2.75%
+            const SHIF_LOW_INCOME_THRESHOLD = 6000;
+            const SHIF_LOW_INCOME_FLAT = 300;
+            const SHIF_PERCENTAGE = 0.0275;
+
+            // Housing Levy: 1.5% of gross salary
+            const HOUSING_LEVY_RATE = 0.015;
+
+            // Personal Relief: 2,400 per month
+            const PERSONAL_RELIEF = 2400;
+
+            // ============================================
+            // NSSF INFO UPDATE
+            // ============================================
+            document.querySelectorAll('input[name="nssfYear"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const year = this.value;
+                    const info = document.getElementById('nssfInfo');
+                    if (year === '2026') {
+                        info.textContent = '2026: Tier 1: 6% up to 9,000 | Tier 2: 6% from 9,001 to 108,000';
+                    } else if (year === '2025') {
+                        info.textContent = '2025: Tier 1: 6% up to 8,000 | Tier 2: 6% from 8,001 to 72,000';
+                    } else if (year === '2024') {
+                        info.textContent = '2024: Tier 1: 6% up to 7,000 | Tier 2: 6% from 7,001 to 36,000';
+                    }
+                });
+            });
+
+            // ============================================
+            // CALCULATE NSSF
+            // ============================================
+            function calculateNSSF(grossSalary, year) {
+                const rates = NSSF_RATES[year] || NSSF_RATES['2026'];
+                
+                // Tier 1
+                const tier1Amount = Math.min(grossSalary, rates.tier1.upTo);
+                const tier1Contribution = tier1Amount * rates.tier1.rate;
+                
+                // Tier 2
+                let tier2Contribution = 0;
+                if (grossSalary > rates.tier2.from) {
+                    const tier2Base = Math.min(grossSalary - rates.tier2.from, rates.tier2.upTo - rates.tier2.from);
+                    tier2Contribution = tier2Base * rates.tier2.rate;
+                }
+                
+                const employeeNSSF = tier1Contribution + tier2Contribution;
+                const employerNSSF = employeeNSSF; // Employer matches employee contribution
+                
+                return {
+                    employee: employeeNSSF,
+                    employer: employerNSSF,
+                    tier1: tier1Contribution,
+                    tier2: tier2Contribution,
+                    total: employeeNSSF + employerNSSF
+                };
             }
 
             // ============================================
-            // PAYE CALCULATION FUNCTION
+            // CALCULATE SHIF
+            // ============================================
+            function calculateSHIF(grossSalary) {
+                if (grossSalary <= 0) return 0;
+                if (grossSalary < SHIF_LOW_INCOME_THRESHOLD) {
+                    return SHIF_LOW_INCOME_FLAT;
+                }
+                return grossSalary * SHIF_PERCENTAGE;
+            }
+
+            // ============================================
+            // CALCULATE PAYE
             // ============================================
             function calculatePAYE(taxablePay) {
                 let grossPAYE = 0;
                 let remaining = taxablePay;
-
-                if (remaining >= 24000) {
-                    grossPAYE += 24000 * 0.10;
-                    remaining -= 24000;
-                } else {
-                    grossPAYE += remaining * 0.10;
-                    remaining = 0;
+                
+                // Band 1: 0 - 24,000 at 10%
+                if (remaining > 0) {
+                    const band1 = Math.min(remaining, 24000);
+                    grossPAYE += band1 * 0.10;
+                    remaining -= band1;
                 }
-
-                if (remaining >= 8333) {
-                    grossPAYE += 8333 * 0.25;
-                    remaining -= 8333;
-                } else {
-                    grossPAYE += remaining * 0.25;
-                    remaining = 0;
+                
+                // Band 2: 24,001 - 32,333 at 25% (next 8,333)
+                if (remaining > 0) {
+                    const band2 = Math.min(remaining, 8333);
+                    grossPAYE += band2 * 0.25;
+                    remaining -= band2;
                 }
-
-                if (remaining >= 467667) {
-                    grossPAYE += 467667 * 0.30;
-                    remaining -= 467667;
-                } else {
-                    grossPAYE += remaining * 0.30;
-                    remaining = 0;
+                
+                // Band 3: 32,334 - 500,000 at 30% (next 467,667)
+                if (remaining > 0) {
+                    const band3 = Math.min(remaining, 467667);
+                    grossPAYE += band3 * 0.30;
+                    remaining -= band3;
                 }
-
-                if (remaining >= 300000) {
-                    grossPAYE += 300000 * 0.325;
-                    remaining -= 300000;
-                } else {
-                    grossPAYE += remaining * 0.325;
-                    remaining = 0;
+                
+                // Band 4: 500,001 - 800,000 at 32.5% (next 300,000)
+                if (remaining > 0) {
+                    const band4 = Math.min(remaining, 300000);
+                    grossPAYE += band4 * 0.325;
+                    remaining -= band4;
                 }
-
+                
+                // Band 5: Above 800,000 at 35%
                 if (remaining > 0) {
                     grossPAYE += remaining * 0.35;
                 }
-
+                
                 return grossPAYE;
             }
 
             // ============================================
-            // MAIN CALCULATE FUNCTION
+            // FORMAT CURRENCY
+            // ============================================
+            function formatCurrency(amount) {
+                return 'KES ' + Math.round(amount).toLocaleString();
+            }
+
+            // ============================================
+            // CALCULATE TAX
             // ============================================
             function calculateTax(e) {
                 e.preventDefault();
 
-                const inputAmount = parseFloat(incomeAmount.value) || 0;
-                if (inputAmount <= 0) {
-                    alert('Please enter a valid amount.');
+                const grossSalary = parseFloat(grossSalaryInput.value) || 0;
+                if (grossSalary <= 0) {
+                    alert('Please enter a valid gross salary amount.');
                     return;
                 }
 
-                const employmentType = document.querySelector('input[name="employmentType"]:checked').value;
-                const payType = document.querySelector('input[name="payType"]:checked').value;
-                const nssfOption = document.querySelector('input[name="nssfOption"]:checked').value;
-                const includeSHA = document.getElementById('includeSHA').checked;
+                // Get selected NSSF year
+                const nssfYear = document.querySelector('input[name="nssfYear"]:checked').value;
+                const includeSHIF = document.getElementById('includeSHIF').checked;
                 const includeHousing = document.getElementById('includeHousing').checked;
-                const otherDeductions = parseFloat(document.getElementById('otherDeductions').value) || 0;
-                const benefits = parseFloat(document.getElementById('benefits').value) || 0;
-                const customNssfValue = parseFloat(customNssf.value) || 0;
 
                 // ============================================
-                // DETERMINE GROSS SALARY BASED ON PAY TYPE
+                // 1. NSSF Calculation
                 // ============================================
-                let grossSalary = 0;
-                let displayIncome = inputAmount;
-                let payTypeLabel = '';
-
-                if (payType === 'gross') {
-                    grossSalary = inputAmount;
-                    payTypeLabel = 'Gross Pay';
-                } else if (payType === 'basic') {
-                    grossSalary = inputAmount + benefits;
-                    payTypeLabel = 'Basic Pay + Benefits';
-                    displayIncome = inputAmount;
-                } else if (payType === 'net') {
-                    let estimatedGross = inputAmount * 1.35;
-                    let tolerance = 100;
-                    let maxIterations = 100;
-                    let iteration = 0;
-                    let found = false;
-
-                    while (iteration < maxIterations && !found) {
-                        const nssf = calculateNSSF(estimatedGross, nssfOption, customNssfValue);
-                        const sha = includeSHA ? estimatedGross * 0.0275 : 0;
-                        const housing = includeHousing ? estimatedGross * 0.015 : 0;
-                        const taxablePay = estimatedGross - nssf;
-                        const paye = calculatePAYE(taxablePay);
-                        const netPaye = Math.max(0, paye - 2400);
-                        const totalDeductions = nssf + sha + housing + netPaye + otherDeductions;
-                        const calculatedNet = estimatedGross - totalDeductions;
-                        const diff = calculatedNet - inputAmount;
-
-                        if (Math.abs(diff) < tolerance) {
-                            found = true;
-                            grossSalary = Math.round(estimatedGross);
-                        } else if (diff > 0) {
-                            estimatedGross -= Math.max(100, Math.abs(diff) * 0.5);
-                        } else {
-                            estimatedGross += Math.max(100, Math.abs(diff) * 0.5);
-                        }
-
-                        iteration++;
-                        if (estimatedGross < 0) {
-                            estimatedGross = inputAmount * 1.5;
-                            break;
-                        }
-                    }
-
-                    if (!found) {
-                        grossSalary = Math.round(estimatedGross);
-                    }
-                    payTypeLabel = 'Net Pay (Target)';
-                    displayIncome = inputAmount;
-                }
+                const nssf = calculateNSSF(grossSalary, nssfYear);
+                const employeeNSSF = nssf.employee;
+                const employerNSSF = nssf.employer;
 
                 // ============================================
-                // CHECK EMPLOYMENT TYPE FOR DEDUCTION RULES
+                // 2. Taxable Pay (Gross - NSSF Employee)
                 // ============================================
-                let nssfApplicable = true;
-                let shaApplicable = true;
-                let housingApplicable = true;
-                let payeApplicable = true;
-
-                if (employmentType === 'self') {
-                    nssfApplicable = false;
-                    shaApplicable = false;
-                    housingApplicable = false;
-                    payeApplicable = false;
-                } else if (employmentType === 'director') {
-                    // Directors may have optional NSSF and SHA
-                    nssfApplicable = true;
-                    shaApplicable = true;
-                    housingApplicable = true;
-                    payeApplicable = true;
-                } else if (employmentType === 'contract') {
-                    // Contract employees may have optional NSSF and SHA
-                    nssfApplicable = true;
-                    shaApplicable = true;
-                    housingApplicable = true;
-                    payeApplicable = true;
-                }
+                const taxablePay = grossSalary - employeeNSSF;
 
                 // ============================================
-                // CALCULATE ALL DEDUCTIONS
+                // 3. PAYE Calculation
                 // ============================================
-                const nssf = nssfApplicable ? calculateNSSF(grossSalary, nssfOption, customNssfValue) : 0;
-                const nssfLabel = getNssfLabel(nssfOption);
-                const sha = (shaApplicable && includeSHA) ? grossSalary * 0.0275 : 0;
-                const housing = (housingApplicable && includeHousing) ? grossSalary * 0.015 : 0;
-                const taxablePay = grossSalary - nssf;
-                const grossPAYE = payeApplicable ? calculatePAYE(taxablePay) : 0;
-                const personalRelief = payeApplicable ? 2400 : 0;
-                const netPAYE = payeApplicable ? Math.max(0, grossPAYE - personalRelief) : 0;
-                const totalDeductions = nssf + sha + housing + netPAYE + otherDeductions;
-                const netSalary = grossSalary - totalDeductions;
+                const grossPAYE = calculatePAYE(taxablePay);
+                const netPAYE = Math.max(0, grossPAYE - PERSONAL_RELIEF);
 
                 // ============================================
-                // DISPLAY RESULTS
+                // 4. SHIF Calculation
                 // ============================================
-                const empTypeLabels = {
-                    'regular': 'Regular Employee',
-                    'director': 'Company Director',
-                    'contract': 'Contract Employee',
-                    'self': 'Self-Employed'
-                };
+                const shif = includeSHIF ? calculateSHIF(grossSalary) : 0;
 
-                const results = {
-                    grossSalary,
-                    payType: payTypeLabel,
-                    displayIncome,
-                    employmentType: empTypeLabels[employmentType],
-                    employmentTypeKey: employmentType,
-                    nssf,
-                    nssfLabel,
-                    sha,
-                    housing,
-                    taxablePay,
-                    grossPAYE,
-                    personalRelief,
-                    netPAYE,
-                    otherDeductions,
-                    benefits,
-                    totalDeductions,
-                    netSalary,
-                    nssfApplicable,
-                    shaApplicable,
-                    housingApplicable,
-                    payeApplicable
-                };
+                // ============================================
+                // 5. Housing Levy Calculation
+                // ============================================
+                const housingLevy = includeHousing ? grossSalary * HOUSING_LEVY_RATE : 0;
 
-                displayResults(results);
-            }
+                // ============================================
+                // 6. Totals
+                // ============================================
+                const totalEmployeeDeductions = employeeNSSF + netPAYE + shif + housingLevy;
+                const netSalary = grossSalary - totalEmployeeDeductions;
+                const totalEmployerCost = grossSalary + employerNSSF + shif + housingLevy;
 
-            // ============================================
-            // DISPLAY RESULTS
-            // ============================================
-            function displayResults(r) {
-                const isSelfEmployed = r.employmentTypeKey === 'self';
+                // ============================================
+                // 7. Results Display
+                // ============================================
+                const nssfYearDisplay = {
+                    '2026': '2026 (Tier 1: 9,000 | Tier 2: 108,000)',
+                    '2025': '2025 (Tier 1: 8,000 | Tier 2: 72,000)',
+                    '2024': '2024 (Tier 1: 7,000 | Tier 2: 36,000)'
+                }[nssfYear] || '2026';
 
-                let html = `
+                const html = `
                     <div class="result-summary">
                         <div class="result-section-title">
-                            <i class="fa-solid fa-user"></i> ${r.employmentType} - ${r.payType} Breakdown
+                            <i class="fa-solid fa-file-invoice-dollar"></i> Monthly Tax Breakdown
                         </div>
 
                         <!-- ===== INCOME ===== -->
                         <div class="result-subsection">
                             <div class="result-subtitle">Income</div>
-                `;
-
-                if (r.payType === 'Net Pay (Target)') {
-                    html += `
-                        <div class="result-row">
-                            <span>Target Net Pay:</span>
-                            <span class="result-value">KES ${r.displayIncome.toLocaleString()}</span>
-                        </div>
-                        <div class="result-row highlight" style="background:var(--forest);color:var(--white);border-radius:8px;padding:10px 14px;">
-                            <span style="color:var(--white);"><strong>Calculated Gross Salary:</strong></span>
-                            <span class="result-value" style="color:var(--gold-2);"><strong>KES ${r.grossSalary.toLocaleString()}</strong></span>
-                        </div>
-                    `;
-                } else if (r.payType === 'Basic Pay + Benefits') {
-                    html += `
-                        <div class="result-row">
-                            <span>Basic Pay:</span>
-                            <span class="result-value">KES ${r.displayIncome.toLocaleString()}</span>
-                        </div>
-                        <div class="result-row">
-                            <span>Benefits / Allowances:</span>
-                            <span class="result-value">KES ${r.benefits.toLocaleString()}</span>
-                        </div>
-                        <div class="result-row highlight" style="background:var(--forest);color:var(--white);border-radius:8px;padding:10px 14px;">
-                            <span style="color:var(--white);"><strong>Gross Salary:</strong></span>
-                            <span class="result-value" style="color:var(--gold-2);"><strong>KES ${r.grossSalary.toLocaleString()}</strong></span>
-                        </div>
-                    `;
-                } else {
-                    html += `
-                        <div class="result-row highlight" style="background:var(--forest);color:var(--white);border-radius:8px;padding:10px 14px;">
-                            <span style="color:var(--white);"><strong>Gross Salary:</strong></span>
-                            <span class="result-value" style="color:var(--gold-2);"><strong>KES ${r.grossSalary.toLocaleString()}</strong></span>
-                        </div>
-                    `;
-                }
-
-                html += `
-                        </div>
-
-                        <!-- ===== EMPLOYMENT TYPE NOTE ===== -->
-                        <div class="result-subsection" style="background:var(--soft);border-radius:8px;padding:10px 14px;margin:10px 0;">
-                            <div style="font-size:13px;color:var(--muted);">
-                                <i class="fa-solid fa-info-circle"></i>
-                                <span><strong>Employment Type:</strong> ${r.employmentType}</span>
-                                ${r.employmentTypeKey === 'self' ? '<br><span style="color:#b3261e;">⚠️ Self-Employed: No PAYE, NSSF, SHA, or Housing Levy deducted at source. You file your own taxes.</span>' : ''}
-                                ${r.employmentTypeKey === 'director' ? '<br><span style="color:#7a4c00;">ℹ️ Director: NSSF and SHA may be optional. Please confirm with KRA.</span>' : ''}
-                                ${r.employmentTypeKey === 'contract' ? '<br><span style="color:#7a4c00;">ℹ️ Contract Employee: NSSF and SHA may be optional based on contract terms.</span>' : ''}
+                            <div class="result-row highlight" style="background:var(--forest);color:var(--white);border-radius:8px;padding:10px 14px;">
+                                <span style="color:var(--white);"><strong>Gross Salary:</strong></span>
+                                <span class="result-value" style="color:var(--gold-2);"><strong>${formatCurrency(grossSalary)}</strong></span>
                             </div>
                         </div>
 
                         <!-- ===== STATUTORY DEDUCTIONS ===== -->
                         <div class="result-subsection">
                             <div class="result-subtitle">Statutory Deductions</div>
-                `;
-
-                if (r.nssfApplicable && r.nssf > 0) {
-                    html += `
-                        <div class="result-row">
-                            <span>NSSF (${r.nssfLabel}):</span>
-                            <span class="result-value">KES ${Math.round(r.nssf).toLocaleString()}</span>
-                        </div>
-                    `;
-                } else {
-                    html += `
-                        <div class="result-row" style="color:var(--muted);">
-                            <span>NSSF:</span>
-                            <span class="result-value">Not applicable for ${r.employmentType}</span>
-                        </div>
-                    `;
-                }
-
-                if (r.shaApplicable && r.sha > 0) {
-                    html += `
-                        <div class="result-row">
-                            <span>SHA (2.75%):</span>
-                            <span class="result-value">KES ${Math.round(r.sha).toLocaleString()}</span>
-                        </div>
-                    `;
-                } else {
-                    html += `
-                        <div class="result-row" style="color:var(--muted);">
-                            <span>SHA:</span>
-                            <span class="result-value">Not applicable for ${r.employmentType}</span>
-                        </div>
-                    `;
-                }
-
-                if (r.housingApplicable && r.housing > 0) {
-                    html += `
-                        <div class="result-row">
-                            <span>Housing Levy (1.5%):</span>
-                            <span class="result-value">KES ${Math.round(r.housing).toLocaleString()}</span>
-                        </div>
-                    `;
-                } else {
-                    html += `
-                        <div class="result-row" style="color:var(--muted);">
-                            <span>Housing Levy:</span>
-                            <span class="result-value">Not applicable for ${r.employmentType}</span>
-                        </div>
-                    `;
-                }
-
-                html += `
+                            <div class="result-row">
+                                <span>NSSF (Employee - ${nssfYearDisplay}):</span>
+                                <span class="result-value">${formatCurrency(employeeNSSF)}</span>
+                            </div>
+                            ${includeSHIF ? `
+                            <div class="result-row">
+                                <span>SHIF ${grossSalary < SHIF_LOW_INCOME_THRESHOLD ? '(Flat Rate 300)' : '(2.75%)'}:</span>
+                                <span class="result-value">${formatCurrency(shif)}</span>
+                            </div>
+                            ` : `
+                            <div class="result-row" style="color:var(--muted);">
+                                <span>SHIF:</span>
+                                <span class="result-value">Not included</span>
+                            </div>
+                            `}
+                            ${includeHousing ? `
+                            <div class="result-row">
+                                <span>Housing Levy (1.5%):</span>
+                                <span class="result-value">${formatCurrency(housingLevy)}</span>
+                            </div>
+                            ` : `
+                            <div class="result-row" style="color:var(--muted);">
+                                <span>Housing Levy:</span>
+                                <span class="result-value">Not included</span>
+                            </div>
+                            `}
                             <div class="result-row" style="border-bottom:2px solid var(--line);">
                                 <span><strong>Total Statutory Deductions:</strong></span>
-                                <span class="result-value"><strong>KES ${Math.round(r.nssf + r.sha + r.housing).toLocaleString()}</strong></span>
+                                <span class="result-value"><strong>${formatCurrency(employeeNSSF + shif + housingLevy)}</strong></span>
                             </div>
                         </div>
 
                         <!-- ===== TAX CALCULATION ===== -->
                         <div class="result-subsection">
                             <div class="result-subtitle">Tax Calculation</div>
-                `;
-
-                if (r.payeApplicable) {
-                    html += `
-                        <div class="result-row">
-                            <span>Taxable Pay:</span>
-                            <span class="result-value">KES ${Math.round(r.taxablePay).toLocaleString()}</span>
-                        </div>
-                        <div class="result-row">
-                            <span>Gross PAYE (Before Relief):</span>
-                            <span class="result-value">KES ${Math.round(r.grossPAYE).toLocaleString()}</span>
-                        </div>
-                        <div class="result-row">
-                            <span>Personal Relief:</span>
-                            <span class="result-value">- KES ${r.personalRelief.toLocaleString()}</span>
-                        </div>
-                        <div class="result-row highlight" style="background:#fff3cd;border-radius:8px;padding:10px 14px;">
-                            <span><strong>Net PAYE (Tax):</strong></span>
-                            <span class="result-value"><strong>KES ${Math.round(r.netPAYE).toLocaleString()}</strong></span>
-                        </div>
-                    `;
-                } else {
-                    html += `
-                        <div class="result-row" style="color:var(--muted);">
-                            <span>PAYE:</span>
-                            <span class="result-value">Not applicable for ${r.employmentType}</span>
-                        </div>
-                    `;
-                }
-
-                if (r.otherDeductions > 0) {
-                    html += `
-                        <div class="result-row">
-                            <span>Other Deductions:</span>
-                            <span class="result-value">KES ${r.otherDeductions.toLocaleString()}</span>
-                        </div>
-                    `;
-                }
-
-                html += `
+                            <div class="result-row">
+                                <span>Taxable Pay (Gross - NSSF):</span>
+                                <span class="result-value">${formatCurrency(taxablePay)}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Gross PAYE (Before Relief):</span>
+                                <span class="result-value">${formatCurrency(grossPAYE)}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Personal Relief:</span>
+                                <span class="result-value">- ${formatCurrency(PERSONAL_RELIEF)}</span>
+                            </div>
+                            <div class="result-row highlight" style="background:#fff3cd;border-radius:8px;padding:10px 14px;">
+                                <span><strong>Net PAYE (Tax):</strong></span>
+                                <span class="result-value"><strong>${formatCurrency(netPAYE)}</strong></span>
+                            </div>
                         </div>
 
                         <!-- ===== SUMMARY ===== -->
                         <div class="result-subsection">
                             <div class="result-subtitle">Summary</div>
                             <div class="result-row">
-                                <span>Total Deductions:</span>
-                                <span class="result-value">KES ${Math.round(r.totalDeductions).toLocaleString()}</span>
+                                <span>Total Employee Deductions:</span>
+                                <span class="result-value">${formatCurrency(totalEmployeeDeductions)}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Effective Tax Rate:</span>
+                                <span class="result-value">${((netPAYE / grossSalary) * 100).toFixed(1)}%</span>
                             </div>
                             <div class="result-row highlight" style="background:var(--gold-2);color:var(--forest-2);border-radius:8px;padding:12px 14px;">
                                 <span style="color:var(--forest-2);"><strong>💰 Net Take-Home Salary:</strong></span>
-                                <span class="result-value" style="color:var(--forest-2);font-size:20px;"><strong>KES ${Math.round(r.netSalary).toLocaleString()}</strong></span>
-                            </div>
-                            <div class="result-row" style="border-top:2px solid var(--gold);padding-top:10px;margin-top:4px;">
-                                <span>Effective Tax Rate:</span>
-                                <span class="result-value">${r.grossSalary > 0 ? ((r.netPAYE / r.grossSalary) * 100).toFixed(1) : 0}%</span>
+                                <span class="result-value" style="color:var(--forest-2);font-size:20px;"><strong>${formatCurrency(netSalary)}</strong></span>
                             </div>
                             <div class="result-row">
                                 <span>Net Income Percentage:</span>
-                                <span class="result-value">${r.grossSalary > 0 ? ((r.netSalary / r.grossSalary) * 100).toFixed(1) : 0}%</span>
+                                <span class="result-value">${((netSalary / grossSalary) * 100).toFixed(1)}%</span>
                             </div>
                         </div>
-                `;
 
-                // ============================================
-                // EMPLOYER COST (Only for Regular Employees)
-                // ============================================
-                if (r.employmentTypeKey === 'regular' && r.grossSalary > 0) {
-                    html += `
+                        <!-- ===== EMPLOYER COST ===== -->
                         <div class="result-subsection" style="margin-top:12px;padding-top:12px;border-top:2px solid var(--gold);">
                             <div class="result-subtitle">Employer Cost (Estimate)</div>
                             <div class="result-row">
                                 <span>Gross Salary:</span>
-                                <span class="result-value">KES ${r.grossSalary.toLocaleString()}</span>
+                                <span class="result-value">${formatCurrency(grossSalary)}</span>
                             </div>
                             <div class="result-row">
-                                <span>Employer NSSF:</span>
-                                <span class="result-value">KES ${Math.round(r.nssf).toLocaleString()}</span>
+                                <span>Employer NSSF (${nssfYearDisplay}):</span>
+                                <span class="result-value">${formatCurrency(employerNSSF)}</span>
                             </div>
+                            ${includeSHIF ? `
                             <div class="result-row">
-                                <span>Employer SHA:</span>
-                                <span class="result-value">KES ${Math.round(r.sha).toLocaleString()}</span>
+                                <span>Employer SHIF:</span>
+                                <span class="result-value">${formatCurrency(shif)}</span>
                             </div>
+                            ` : ''}
+                            ${includeHousing ? `
                             <div class="result-row">
                                 <span>Employer Housing Levy:</span>
-                                <span class="result-value">KES ${Math.round(r.housing).toLocaleString()}</span>
+                                <span class="result-value">${formatCurrency(housingLevy)}</span>
                             </div>
+                            ` : ''}
                             <div class="result-row highlight" style="background:var(--soft);border-radius:8px;padding:10px 14px;">
                                 <span><strong>Total Employer Cost:</strong></span>
-                                <span class="result-value"><strong>KES ${Math.round(r.grossSalary + r.nssf + r.sha + r.housing).toLocaleString()}</strong></span>
+                                <span class="result-value"><strong>${formatCurrency(totalEmployerCost)}</strong></span>
                             </div>
                         </div>
-                    `;
-                }
 
-                html += `
+                        <!-- ===== TAX BANDS BREAKDOWN ===== -->
+                        <div class="result-subsection" style="margin-top:12px;padding-top:12px;border-top:2px solid var(--soft);">
+                            <div class="result-subtitle">PAYE Tax Bands Breakdown</div>
+                            ${(() => {
+                                let remaining = taxablePay;
+                                let bandsHTML = '';
+                                const bandLabels = [
+                                    { label: '10% (0 - 24,000)', limit: 24000, rate: 0.10 },
+                                    { label: '25% (24,001 - 32,333)', limit: 8333, rate: 0.25 },
+                                    { label: '30% (32,334 - 500,000)', limit: 467667, rate: 0.30 },
+                                    { label: '32.5% (500,001 - 800,000)', limit: 300000, rate: 0.325 },
+                                    { label: '35% (Above 800,000)', limit: Infinity, rate: 0.35 }
+                                ];
+                                
+                                for (const band of bandLabels) {
+                                    if (remaining > 0) {
+                                        const amount = Math.min(remaining, band.limit);
+                                        const tax = amount * band.rate;
+                                        if (amount > 0) {
+                                            bandsHTML += `
+                                                <div class="result-row">
+                                                    <span>${band.label}:</span>
+                                                    <span class="result-value">${formatCurrency(tax)} <span style="font-size:11px;color:var(--muted);">(${formatCurrency(amount)})</span></span>
+                                                </div>
+                                            `;
+                                        }
+                                        remaining -= amount;
+                                    }
+                                }
+                                return bandsHTML;
+                            })()}
+                        </div>
                     </div>
                 `;
 
@@ -937,51 +701,39 @@
             // RESET
             // ============================================
             function resetCalculator() {
-                form.reset();
-                incomeAmount.value = '';
-                customNssf.value = '';
-                document.getElementById('otherDeductions').value = '';
-                document.getElementById('benefits').value = '';
-                customNssfContainer.style.display = 'none';
+                grossSalaryInput.value = '';
+                document.querySelector('input[name="nssfYear"][value="2026"]').checked = true;
+                document.getElementById('includeSHIF').checked = true;
+                document.getElementById('includeHousing').checked = true;
                 resultsSection.style.display = 'none';
                 resultsContent.innerHTML = '';
-                incomeAmount.focus();
-
-                // Reset radio buttons to defaults
-                document.querySelector('input[name="employmentType"][value="regular"]').checked = true;
-                document.querySelector('input[name="payType"][value="gross"]').checked = true;
-                document.querySelector('input[name="nssfOption"][value="tier1"]').checked = true;
-                document.getElementById('includeSHA').checked = true;
-                document.getElementById('includeHousing').checked = true;
-
-                // Update info messages
-                updateEmploymentInfo();
-                updatePayTypeInfo();
-                updateNssfInfo();
+                grossSalaryInput.focus();
+                document.getElementById('nssfInfo').textContent = '2026: Tier 1: 6% up to 9,000 | Tier 2: 6% from 9,001 to 108,000';
             }
-
-            // ============================================
-            // INITIAL SETUP
-            // ============================================
-            updateEmploymentInfo();
-            updatePayTypeInfo();
-            updateNssfInfo();
 
             // ============================================
             // EVENT LISTENERS
             // ============================================
             form.addEventListener('submit', calculateTax);
-
             resetBtn.addEventListener('click', resetCalculator);
 
-            incomeAmount.addEventListener('keypress', function(e) {
+            grossSalaryInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     form.dispatchEvent(new Event('submit'));
                 }
             });
 
+            // Auto-calculate on page load with default value
+            setTimeout(() => {
+                form.dispatchEvent(new Event('submit'));
+            }, 500);
+
             console.log('🚀 KRA iTax Calculator Loaded Successfully!');
-            console.log('📊 Features: Employment Type affects deductions, Gross/Basic/Net Pay, NSSF Tiers, SHA, Housing Levy');
+            console.log('📊 Using exact KRA rates for 2025/2026');
+            console.log('📋 PAYE Bands: 10%, 25%, 30%, 32.5%, 35%');
+            console.log('📋 NSSF: Tier 1 (6% up to 9,000), Tier 2 (6% up to 108,000)');
+            console.log('📋 SHIF: 300 (low income) or 2.75%');
+            console.log('📋 Housing Levy: 1.5%');
         });
     </script>
     <script src="script.js"></script>

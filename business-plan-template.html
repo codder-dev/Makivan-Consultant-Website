@@ -626,45 +626,98 @@
                 });
             });
 
-            // ============================================
-            // FORM SUBMISSION - GENERATE PLAN
-            // ============================================
-            document.getElementById('businessPlanForm').addEventListener('submit', function(e) {
-                e.preventDefault();
+            /// ============================================
+// FORM SUBMISSION - GENERATE PLAN WITH REFRESH
+// ============================================
+document.getElementById('businessPlanForm').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-                // Validate all sections
-                const allValid = validateAllSections();
+    // Validate all sections
+    const allValid = validateAllSections();
 
-                if (!allValid) {
-                    // Find first error and scroll to it
-                    const firstError = document.querySelector('.error');
-                    if (firstError) {
-                        // Find which section the error is in
-                        const errorSection = firstError.closest('.form-section');
-                        const sectionIndex = parseInt(errorSection.dataset.section) - 1;
-                        showSection(sectionIndex);
-                        firstError.focus();
-                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                    return;
-                }
+    if (!allValid) {
+        // Find first error and scroll to it
+        const firstError = document.querySelector('.error');
+        if (firstError) {
+            const errorSection = firstError.closest('.form-section');
+            const sectionIndex = parseInt(errorSection.dataset.section) - 1;
+            showSection(sectionIndex);
+            firstError.focus();
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+    }
 
-                // Show loading state
-                const submitBtn = document.querySelector('.generate-plan-btn');
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating...';
-                submitBtn.disabled = true;
+    // ============================================
+    // SHOW LOADING SPINNER
+    // ============================================
+    const submitBtn = document.querySelector('.generate-plan-btn');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating...';
+    submitBtn.disabled = true;
 
-                // Update preview
-                updatePreview();
+    // Update preview with current data
+    updatePreview();
 
-                // Scroll to preview after delay
-                setTimeout(() => {
-                    document.getElementById('preview').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                }, 1000);
-            });
+    // ============================================
+    // SAVE TO LOCALSTORAGE BEFORE REFRESH
+    // ============================================
+    saveBusinessData();
+
+    // Also save the generated plan preview
+    const planContent = document.getElementById('planPreview').innerHTML;
+    localStorage.setItem('generatedPlan', planContent);
+
+    // ============================================
+    // SHOW SUCCESS MESSAGE BEFORE REFRESH
+    // ============================================
+    const previewSection = document.getElementById('preview');
+    const previewContainer = previewSection.querySelector('.preview-container');
+    
+    // Add a success toast/message
+    const successMsg = document.createElement('div');
+    successMsg.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--white);
+        padding: 30px 40px;
+        border-radius: 16px;
+        box-shadow: var(--shadow-lg);
+        z-index: 999;
+        text-align: center;
+        max-width: 400px;
+        border: 2px solid var(--gold);
+        animation: fadeInUp 0.5s ease;
+    `;
+    successMsg.innerHTML = `
+        <i class="fa-solid fa-check-circle" style="font-size: 48px; color: #0f5132; margin-bottom: 12px;"></i>
+        <h3 style="color: var(--forest); margin-bottom: 8px;">Business Plan Generated! ✅</h3>
+        <p style="color: var(--muted); margin-bottom: 16px;">Your business plan has been generated successfully. The page will refresh to clear all fields.</p>
+        <div style="width: 100%; height: 4px; background: var(--soft); border-radius: 4px; overflow: hidden;">
+            <div style="width: 100%; height: 100%; background: var(--gold); animation: progressBar 2s ease-in-out forwards;"></div>
+        </div>
+    `;
+    document.body.appendChild(successMsg);
+
+    // ============================================
+    // RESET BUTTON AND REFRESH AFTER DELAY
+    // ============================================
+    setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        // Remove success message
+        if (successMsg.parentNode) {
+            successMsg.remove();
+        }
+        // Refresh page to clear all fields
+        location.reload();
+    }, 2500);
+
+    // Scroll to preview
+    previewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 
             // ============================================
             // DOWNLOAD FUNCTIONS
