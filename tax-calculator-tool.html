@@ -133,7 +133,7 @@
                             </div>
                             <div id="nssfInfoBox" class="info-box" style="margin-top:10px;">
                                 <i class="fa-solid fa-info-circle"></i>
-                                <span id="nssfInfoText">Tier 1: 6% of pensionable pay up to 9,000 (KES 540 max per side)</span>
+                                <span id="nssfInfoText">Tier 1: 6% of pensionable pay up to 9,000 (KES 540.00 max per side)</span>
                             </div>
                         </div>
 
@@ -205,7 +205,7 @@
                         </div>
                         <div class="sidebar-item" style="border-top:1px solid var(--soft);padding-top:8px;margin-top:4px;">
                             <span>Personal Relief:</span>
-                            <span>KES 2,400/mo</span>
+                            <span>KES 2,400.00/mo</span>
                         </div>
                         <div class="sidebar-item">
                             <span>NSSF Tier 1:</span>
@@ -217,7 +217,7 @@
                         </div>
                         <div class="sidebar-item">
                             <span>SHIF (Low):</span>
-                            <span>KES 300</span>
+                            <span>KES 300.00</span>
                         </div>
                         <div class="sidebar-item">
                             <span>SHIF (High):</span>
@@ -262,7 +262,7 @@
                 </details>
                 <details data-aos="fade-up" data-aos-delay="200">
                     <summary><i class="fa-solid fa-plus"></i> How is SHIF calculated?</summary>
-                    <p>For income below 6,000: KES 300. For income 6,000 and above: 2.75% of gross salary.</p>
+                    <p>For income below 6,000: KES 300.00. For income 6,000 and above: 2.75% of gross salary.</p>
                 </details>
                 <details data-aos="fade-up" data-aos-delay="250">
                     <summary><i class="fa-solid fa-plus"></i> What is the Housing Levy rate?</summary>
@@ -270,7 +270,7 @@
                 </details>
                 <details data-aos="fade-up" data-aos-delay="300">
                     <summary><i class="fa-solid fa-plus"></i> What is the personal relief amount?</summary>
-                    <p>Personal relief is KES 2,400 per month (KES 28,800 per year) deducted from your PAYE.</p>
+                    <p>Personal relief is KES 2,400.00 per month (KES 28,800.00 per year) deducted from your PAYE.</p>
                 </details>
             </div>
         </section>
@@ -404,23 +404,34 @@
             const PERSONAL_RELIEF = 2400;
 
             // ============================================
+            // FORMAT CURRENCY WITH 2 DECIMAL PLACES
+            // ============================================
+            function formatCurrency(amount) {
+                return 'KES ' + amount.toFixed(2);
+            }
+
+            function formatCurrencyShort(amount) {
+                return 'KES ' + amount.toFixed(2);
+            }
+
+            // ============================================
             // UPDATE NSSF INFO
             // ============================================
             document.querySelectorAll('input[name="nssfOption"]').forEach(radio => {
                 radio.addEventListener('change', function() {
                     const value = this.value;
                     if (value === 'tier1') {
-                        nssfInfoText.textContent = 'Tier 1: 6% of pensionable pay up to 9,000 (KES 540 max per side)';
+                        nssfInfoText.textContent = 'Tier 1: 6% of pensionable pay up to 9,000 (KES 540.00 max per side)';
                     } else if (value === 'both') {
                         nssfInfoText.textContent = 'Tier 1: 6% up to 9,000 + Tier 2: 6% from 9,001 to 108,000';
                     } else if (value === 'old') {
-                        nssfInfoText.textContent = 'Old Rates: 5% of pensionable pay up to 400 (KES 20 max per side)';
+                        nssfInfoText.textContent = 'Old Rates: 5% of pensionable pay up to 400 (KES 20.00 max per side)';
                     }
                 });
             });
 
             // ============================================
-            // CALCULATE NSSF
+            // CALCULATE NSSF (EXACT 2 DECIMAL PLACES)
             // ============================================
             function calculateNSSF(grossSalary, option) {
                 let employeeNSSF = 0;
@@ -459,7 +470,7 @@
             }
 
             // ============================================
-            // CALCULATE SHIF
+            // CALCULATE SHIF (EXACT 2 DECIMAL PLACES)
             // ============================================
             function calculateSHIF(grossSalary) {
                 if (grossSalary <= 0) return 0;
@@ -470,7 +481,7 @@
             }
 
             // ============================================
-            // CALCULATE PAYE
+            // CALCULATE PAYE (EXACT 2 DECIMAL PLACES)
             // ============================================
             function calculatePAYE(taxablePay) {
                 let grossPAYE = 0;
@@ -508,13 +519,6 @@
             }
 
             // ============================================
-            // FORMAT CURRENCY
-            // ============================================
-            function formatCurrency(amount) {
-                return 'KES ' + Math.round(amount).toLocaleString();
-            }
-
-            // ============================================
             // CALCULATE TAX
             // ============================================
             function calculateTax(e) {
@@ -546,8 +550,8 @@
                 } else if (payType === 'net') {
                     // Calculate Gross from Net (iterative)
                     let estimatedGross = amount * 1.35;
-                    let tolerance = 100;
-                    let maxIterations = 100;
+                    let tolerance = 0.01;
+                    let maxIterations = 200;
                     let found = false;
                     let iteration = 0;
 
@@ -564,11 +568,11 @@
 
                         if (Math.abs(diff) < tolerance) {
                             found = true;
-                            grossSalary = Math.round(estimatedGross);
+                            grossSalary = Math.round(estimatedGross * 100) / 100;
                         } else if (diff > 0) {
-                            estimatedGross -= Math.max(100, Math.abs(diff) * 0.5);
+                            estimatedGross -= Math.max(1, Math.abs(diff) * 0.5);
                         } else {
-                            estimatedGross += Math.max(100, Math.abs(diff) * 0.5);
+                            estimatedGross += Math.max(1, Math.abs(diff) * 0.5);
                         }
 
                         iteration++;
@@ -579,7 +583,7 @@
                     }
 
                     if (!found) {
-                        grossSalary = Math.round(estimatedGross);
+                        grossSalary = Math.round(estimatedGross * 100) / 100;
                     }
                     payTypeLabel = 'Net Pay (Target: ' + formatCurrency(amount) + ')';
                 }
@@ -603,9 +607,39 @@
                 const totalEmployerCost = grossSalary + nssf.employer + shif + housing;
 
                 // ============================================
-                // RESULTS DISPLAY
+                // RESULTS DISPLAY WITH 2 DECIMAL PLACES
                 // ============================================
                 const shifDisplay = grossSalary < SHIF_LOW_INCOME_THRESHOLD ? '(Flat Rate 300)' : '(2.75%)';
+
+                // Calculate tax bands breakdown with 2 decimals
+                function getTaxBandsBreakdown(taxablePay) {
+                    let remaining = taxablePay;
+                    let bandsHTML = '';
+                    const bandLabels = [
+                        { label: '10% (0 - 24,000)', limit: 24000, rate: 0.10 },
+                        { label: '25% (24,001 - 32,333)', limit: 8333, rate: 0.25 },
+                        { label: '30% (32,334 - 500,000)', limit: 467667, rate: 0.30 },
+                        { label: '32.5% (500,001 - 800,000)', limit: 300000, rate: 0.325 },
+                        { label: '35% (Above 800,000)', limit: Infinity, rate: 0.35 }
+                    ];
+                    
+                    for (const band of bandLabels) {
+                        if (remaining > 0) {
+                            const amount = Math.min(remaining, band.limit);
+                            const tax = amount * band.rate;
+                            if (amount > 0) {
+                                bandsHTML += `
+                                    <div class="result-row">
+                                        <span>${band.label}:</span>
+                                        <span class="result-value">${formatCurrency(tax)} <span style="font-size:11px;color:var(--muted);">(${formatCurrency(amount)})</span></span>
+                                    </div>
+                                `;
+                            }
+                            remaining -= amount;
+                        }
+                    }
+                    return bandsHTML;
+                }
 
                 const html = `
                     <div class="result-summary">
@@ -616,7 +650,7 @@
                         <!-- ===== INCOME ===== -->
                         <div class="result-subsection">
                             <div class="result-subtitle">Income</div>
-                            ${payTypeLabel === 'Net Pay (Target: ' + formatCurrency(amount) + ')' ? `
+                            ${payTypeLabel.includes('Net Pay (Target') ? `
                             <div class="result-row">
                                 <span>Target Net Pay:</span>
                                 <span class="result-value">${formatCurrency(amount)}</span>
@@ -706,7 +740,7 @@
                             </div>
                             <div class="result-row">
                                 <span>Effective Tax Rate:</span>
-                                <span class="result-value">${((netPAYE / grossSalary) * 100).toFixed(1)}%</span>
+                                <span class="result-value">${((netPAYE / grossSalary) * 100).toFixed(2)}%</span>
                             </div>
                             <div class="result-row highlight" style="background:var(--gold-2);color:var(--forest-2);border-radius:8px;padding:12px 14px;">
                                 <span style="color:var(--forest-2);"><strong>💰 Net Take-Home Salary:</strong></span>
@@ -714,7 +748,7 @@
                             </div>
                             <div class="result-row">
                                 <span>Net Income Percentage:</span>
-                                <span class="result-value">${((netSalary / grossSalary) * 100).toFixed(1)}%</span>
+                                <span class="result-value">${((netSalary / grossSalary) * 100).toFixed(2)}%</span>
                             </div>
                         </div>
 
@@ -750,34 +784,7 @@
                         <!-- ===== TAX BANDS BREAKDOWN ===== -->
                         <div class="result-subsection" style="margin-top:12px;padding-top:12px;border-top:2px solid var(--soft);">
                             <div class="result-subtitle">PAYE Tax Bands Breakdown</div>
-                            ${(() => {
-                                let remaining = taxablePay;
-                                let bandsHTML = '';
-                                const bandLabels = [
-                                    { label: '10% (0 - 24,000)', limit: 24000, rate: 0.10 },
-                                    { label: '25% (24,001 - 32,333)', limit: 8333, rate: 0.25 },
-                                    { label: '30% (32,334 - 500,000)', limit: 467667, rate: 0.30 },
-                                    { label: '32.5% (500,001 - 800,000)', limit: 300000, rate: 0.325 },
-                                    { label: '35% (Above 800,000)', limit: Infinity, rate: 0.35 }
-                                ];
-                                
-                                for (const band of bandLabels) {
-                                    if (remaining > 0) {
-                                        const amount = Math.min(remaining, band.limit);
-                                        const tax = amount * band.rate;
-                                        if (amount > 0) {
-                                            bandsHTML += `
-                                                <div class="result-row">
-                                                    <span>${band.label}:</span>
-                                                    <span class="result-value">${formatCurrency(tax)} <span style="font-size:11px;color:var(--muted);">(${formatCurrency(amount)})</span></span>
-                                                </div>
-                                            `;
-                                        }
-                                        remaining -= amount;
-                                    }
-                                }
-                                return bandsHTML;
-                            })()}
+                            ${getTaxBandsBreakdown(taxablePay)}
                         </div>
                     </div>
                 `;
@@ -801,7 +808,7 @@
                 resultsSection.style.display = 'none';
                 resultsContent.innerHTML = '';
                 amountInput.focus();
-                nssfInfoText.textContent = 'Tier 1: 6% of pensionable pay up to 9,000 (KES 540 max per side)';
+                nssfInfoText.textContent = 'Tier 1: 6% of pensionable pay up to 9,000 (KES 540.00 max per side)';
             }
 
             // ============================================
@@ -822,12 +829,12 @@
             }, 500);
 
             console.log('🚀 KRA iTax PAYE Calculator Loaded Successfully!');
-            console.log('📊 Using exact KRA rates for 2025/2026');
+            console.log('📊 Using exact KRA rates with 2 decimal places');
             console.log('📋 PAYE Bands: 10%, 25%, 30%, 32.5%, 35%');
             console.log('📋 NSSF Options: Tier 1, Both Tier 1 & 2, Old Rates');
-            console.log('📋 SHIF: 300 (low income) or 2.75%');
+            console.log('📋 SHIF: 300.00 (low income) or 2.75%');
             console.log('📋 Housing Levy: 1.5%');
-            console.log('📋 Personal Relief: KES 2,400');
+            console.log('📋 Personal Relief: KES 2,400.00');
         });
     </script>
     <script src="script.js"></script>
