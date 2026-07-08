@@ -742,6 +742,209 @@ p {
 }
 
 /* ============================================
+   TAX CALCULATOR PROMO SECTION
+   ============================================ */
+.tax-calculator-promo {
+    background: linear-gradient(135deg, #fbfaf6 0%, #f1f4ed 100%);
+    padding: clamp(48px, 7vw, 80px) var(--gutter);
+}
+
+.tax-promo-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tax-promo-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tax-promo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    padding: 6px 16px;
+    background: var(--gold);
+    color: var(--forest-2);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tax-promo-badge i {
+    font-size: 14px;
+}
+
+.tax-promo-content h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.08;
+}
+
+.tax-promo-content h2 .highlight-gold {
+    color: var(--gold);
+    position: relative;
+}
+
+.tax-promo-content h2 .highlight-gold::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(198, 161, 91, 0.3);
+    border-radius: 3px;
+}
+
+.tax-promo-content > p {
+    color: var(--muted);
+    font-size: clamp(16px, 1.2vw, 18px);
+    line-height: 1.7;
+    max-width: 560px;
+}
+
+.tax-promo-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+    margin: 8px 0;
+}
+
+.tax-promo-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--ink);
+}
+
+.tax-promo-feature i {
+    color: var(--teal);
+    font-size: 16px;
+}
+
+.tax-promo-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.tax-promo-actions .btn {
+    min-height: 48px;
+    padding: 12px 28px;
+}
+
+/* ===== TAX PROMO VISUAL ===== */
+.tax-promo-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tax-promo-visual {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px 28px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tax-visual-icon {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--soft);
+}
+
+.tax-visual-icon i {
+    font-size: 36px;
+    color: var(--gold);
+    background: rgba(198, 161, 91, 0.12);
+    padding: 14px;
+    border-radius: 12px;
+}
+
+.tax-visual-icon span {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--forest);
+}
+
+.tax-visual-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 140px;
+    padding: 0 8px;
+    gap: 12px;
+}
+
+.tax-bar {
+    flex: 1;
+    background: linear-gradient(180deg, var(--gold), var(--gold-2));
+    border-radius: 6px 6px 0 0;
+    min-height: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 8px;
+    transition: height 0.6s ease;
+    position: relative;
+}
+
+.tax-bar:nth-child(1) { background: linear-gradient(180deg, #c6a15b, #f0d890); }
+.tax-bar:nth-child(2) { background: linear-gradient(180deg, #1e7668, #4aa392); }
+.tax-bar:nth-child(3) { background: linear-gradient(180deg, #173f35, #3a7a6a); }
+.tax-bar:nth-child(4) { background: linear-gradient(180deg, #63706a, #9aaba3); }
+
+.tax-bar span {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--white);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    text-align: center;
+    line-height: 1.1;
+}
+
+.tax-visual-net {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    background: var(--forest);
+    border-radius: 10px;
+    color: var(--white);
+}
+
+.tax-visual-net span {
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.tax-visual-net strong {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--gold-2);
+}
+
+/* ============================================
    WHY CHOOSE US
    ============================================ */
 .why-section {
@@ -1777,521 +1980,6 @@ p {
 }
 
 /* ============================================
-   BUSINESS PLAN TEMPLATE FORM
-   ============================================ */
-.form-container {
-    max-width: 900px;
-    margin: 0 auto;
-    background: var(--white);
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: var(--shadow);
-}
-
-.form-header {
-    text-align: center;
-    margin-bottom: 32px;
-}
-
-.form-header h2 {
-    font-size: clamp(24px, 3vw, 32px);
-    margin-bottom: 8px;
-}
-
-.form-header h2 i {
-    color: var(--gold);
-}
-
-.form-header p {
-    color: var(--muted);
-}
-
-.business-plan-form .form-section {
-    margin-bottom: 32px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid var(--soft);
-}
-
-.business-plan-form .form-section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-.business-plan-form .form-section h3 {
-    font-size: 18px;
-    color: var(--forest);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.section-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    background: var(--gold);
-    color: var(--white);
-    border-radius: 50%;
-    font-size: 13px;
-    font-weight: 800;
-}
-
-.business-plan-form .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-
-.business-plan-form .form-group {
-    margin-bottom: 12px;
-}
-
-.business-plan-form .form-group label {
-    display: block;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 4px;
-    font-size: 14px;
-}
-
-.business-plan-form .form-group input,
-.business-plan-form .form-group select,
-.business-plan-form .form-group textarea {
-    width: 100%;
-    padding: 10px 14px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    font-size: 14px;
-    background: var(--paper);
-    color: var(--ink);
-    transition: all 0.3s ease;
-    outline: none;
-    font-family: inherit;
-}
-
-.business-plan-form .form-group input:focus,
-.business-plan-form .form-group select:focus,
-.business-plan-form .form-group textarea:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 4px rgba(198, 161, 91, 0.15);
-}
-
-.business-plan-form .form-group textarea {
-    resize: vertical;
-    min-height: 60px;
-}
-
-.form-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-top: 24px;
-    padding-top: 24px;
-    border-top: 2px solid var(--soft);
-}
-
-.generate-btn {
-    min-height: 50px;
-    padding: 14px 32px;
-    font-size: 16px;
-}
-
-/* ============================================
-   PLAN PREVIEW
-   ============================================ */
-.preview-container {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.preview-header {
-    text-align: center;
-    margin-bottom: 32px;
-}
-
-.preview-header h2 i {
-    color: var(--gold);
-}
-
-.plan-preview {
-    background: var(--white);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 48px 56px;
-    box-shadow: var(--shadow);
-    font-family: 'Times New Roman', Times, serif;
-    line-height: 1.8;
-    color: #222;
-}
-
-.plan-preview .plan-header {
-    text-align: center;
-    border-bottom: 3px solid var(--gold);
-    padding-bottom: 20px;
-    margin-bottom: 30px;
-}
-
-.plan-preview .plan-header h1 {
-    font-size: 32px;
-    color: var(--forest);
-    font-weight: 900;
-    letter-spacing: 1px;
-}
-
-.plan-preview .plan-subtitle {
-    font-size: 18px;
-    color: var(--muted);
-    margin-top: -4px;
-}
-
-.plan-preview .plan-date {
-    font-size: 14px;
-    color: #999;
-    margin-top: 4px;
-}
-
-.plan-preview .plan-section {
-    margin-bottom: 28px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
-}
-
-.plan-preview .plan-section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-.plan-preview .plan-section h3 {
-    font-size: 20px;
-    color: var(--forest);
-    border-left: 4px solid var(--gold);
-    padding-left: 14px;
-    margin-bottom: 12px;
-    font-weight: 700;
-}
-
-.plan-preview .plan-section p {
-    margin: 6px 0;
-    font-size: 15px;
-    color: #333;
-}
-
-.plan-preview .plan-section strong {
-    color: var(--forest);
-}
-
-.plan-preview .plan-footer {
-    text-align: center;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 2px solid var(--gold);
-    font-size: 13px;
-    color: #999;
-}
-
-/* Download Actions */
-.download-actions {
-    display: none;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 30px;
-}
-
-.download-actions .btn {
-    min-height: 48px;
-    padding: 12px 28px;
-}
-
-/* ============================================
-   TAX CALCULATOR
-   ============================================ */
-.calculator-wrapper {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.calculator-container {
-    background: var(--white);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 32px 28px;
-    box-shadow: var(--shadow);
-}
-
-.calculator-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 28px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid var(--soft);
-}
-
-.calculator-header i {
-    font-size: 32px;
-    color: var(--gold);
-    background: rgba(198, 161, 91, 0.12);
-    padding: 14px;
-    border-radius: 12px;
-}
-
-.calculator-header h2 {
-    font-size: clamp(22px, 2.5vw, 28px);
-    margin-bottom: 2px;
-}
-
-.calculator-header p {
-    color: var(--muted);
-    font-size: 14px;
-    margin: 0;
-}
-
-.calculator-section {
-    margin-bottom: 20px;
-}
-
-.calculator-section label {
-    display: block;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 6px;
-    font-size: 14px;
-}
-
-.calculator-select,
-.calculator-input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    font-size: 15px;
-    background: var(--paper);
-    color: var(--ink);
-    transition: all 0.3s ease;
-    outline: none;
-}
-
-.calculator-select:focus,
-.calculator-input:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 4px rgba(198, 161, 91, 0.15);
-}
-
-.input-wrapper {
-    display: flex;
-    align-items: center;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.input-wrapper:focus-within {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 4px rgba(198, 161, 91, 0.15);
-}
-
-.input-prefix {
-    padding: 12px 14px;
-    background: var(--soft);
-    color: var(--muted);
-    font-weight: 700;
-    font-size: 14px;
-    border-right: 1px solid var(--line);
-}
-
-.input-wrapper .calculator-input {
-    border: none;
-    border-radius: 0;
-    padding: 12px 14px;
-    background: transparent;
-}
-
-.input-wrapper .calculator-input:focus {
-    box-shadow: none;
-}
-
-.calculate-btn {
-    width: 100%;
-    padding: 14px;
-    font-size: 16px;
-    min-height: 52px;
-    margin-top: 8px;
-}
-
-/* Results Section */
-.results-section {
-    margin-top: 28px;
-    padding-top: 24px;
-    border-top: 2px solid var(--soft);
-}
-
-.results-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-}
-
-.results-header i {
-    font-size: 22px;
-    color: var(--gold);
-}
-
-.results-header h3 {
-    font-size: 18px;
-    color: var(--ink);
-}
-
-.result-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--soft);
-    font-size: 15px;
-}
-
-.result-row:last-child {
-    border-bottom: none;
-}
-
-.result-row.highlight {
-    background: var(--soft);
-    padding: 12px 16px;
-    border-radius: 8px;
-    margin: 6px 0;
-    border-bottom: none;
-    font-weight: 700;
-    font-size: 16px;
-}
-
-.result-row .result-value {
-    font-weight: 700;
-    color: var(--forest);
-}
-
-.result-row.highlight .result-value {
-    color: var(--forest);
-    font-size: 18px;
-}
-
-.results-note {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    padding: 14px 16px;
-    background: #fff8e7;
-    border-radius: 10px;
-    margin: 16px 0;
-    border-left: 4px solid var(--gold);
-}
-
-.results-note i {
-    color: var(--gold);
-    font-size: 18px;
-    margin-top: 2px;
-    flex-shrink: 0;
-}
-
-.results-note p {
-    font-size: 13px;
-    color: var(--muted);
-    margin: 0;
-}
-
-.results-link {
-    color: var(--teal);
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.results-link:hover {
-    text-decoration: underline;
-}
-
-.reset-btn {
-    margin-top: 8px;
-    width: 100%;
-    justify-content: center;
-}
-
-/* Calculator Sidebar */
-.calculator-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.sidebar-card {
-    background: var(--white);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 24px 20px;
-    box-shadow: var(--shadow-sm);
-}
-
-.sidebar-card h3 {
-    font-size: 16px;
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.sidebar-card h3 i {
-    color: var(--gold);
-}
-
-.sidebar-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--soft);
-    font-size: 14px;
-}
-
-.sidebar-item:last-child {
-    border-bottom: none;
-}
-
-.sidebar-item span:last-child {
-    font-weight: 700;
-    color: var(--forest);
-}
-
-.sidebar-link {
-    display: block;
-    padding: 8px 0;
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 14px;
-    border-bottom: 1px solid var(--soft);
-    transition: color 0.3s ease;
-}
-
-.sidebar-link:last-child {
-    border-bottom: none;
-}
-
-.sidebar-link:hover {
-    color: var(--teal);
-}
-
-.sidebar-card p {
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-/* ============================================
    CONTACT
    ============================================ */
 .contact-layout {
@@ -2631,637 +2319,6 @@ small {
     background: var(--teal);
     transform: translateY(-2px);
 }
-/* ============================================
-   SUBMIT FOR REVIEW SECTION
-   ============================================ */
-.submit-container {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.submit-card {
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
-    padding: 40px;
-    background: var(--white);
-    border: 2px solid var(--gold);
-    border-radius: 16px;
-    box-shadow: var(--shadow);
-    position: relative;
-}
-
-.submit-card::before {
-    content: 'FREE';
-    position: absolute;
-    top: -12px;
-    right: 30px;
-    padding: 4px 18px;
-    background: var(--gold);
-    color: var(--forest-2);
-    font-weight: 900;
-    font-size: 14px;
-    border-radius: 999px;
-    letter-spacing: 0.5px;
-}
-
-.submit-icon {
-    flex-shrink: 0;
-    display: grid;
-    place-items: center;
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, var(--gold-2), var(--gold));
-    border-radius: 50%;
-    font-size: 30px;
-    color: var(--forest-2);
-    box-shadow: 0 12px 32px rgba(198, 161, 91, 0.25);
-}
-
-.submit-card h2 {
-    font-size: clamp(22px, 2.5vw, 28px);
-    margin-bottom: 8px;
-    color: var(--ink);
-}
-
-.submit-card h2 i {
-    color: var(--gold);
-}
-
-.submit-card p {
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.7;
-    margin-bottom: 16px;
-}
-
-.submit-card p strong {
-    color: var(--forest);
-}
-
-/* Submit Form */
-.submit-form {
-    display: grid;
-    gap: 16px;
-}
-
-.submit-form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-
-.submit-form .form-group {
-    margin-bottom: 0;
-}
-
-.submit-form .form-group label {
-    display: block;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 4px;
-    font-size: 14px;
-}
-
-.submit-form .form-group input,
-.submit-form .form-group textarea {
-    width: 100%;
-    padding: 10px 14px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    font-size: 14px;
-    background: var(--paper);
-    color: var(--ink);
-    transition: all 0.3s ease;
-    outline: none;
-    font-family: inherit;
-}
-
-.submit-form .form-group input:focus,
-.submit-form .form-group textarea:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 4px rgba(198, 161, 91, 0.15);
-}
-
-.submit-form .form-group textarea {
-    resize: vertical;
-    min-height: 60px;
-}
-
-.submit-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-top: 8px;
-}
-
-.submit-plan-btn {
-    min-height: 50px;
-    padding: 14px 36px;
-    font-size: 16px;
-    width: 100%;
-}
-
-.submit-note {
-    font-size: 13px !important;
-    color: var(--muted) !important;
-    margin: 0 !important;
-}
-
-.submit-note i {
-    color: var(--teal);
-    margin-right: 6px;
-}
-
-/* Submit Message */
-.submit-message {
-    display: none;
-    margin-top: 16px;
-    padding: 20px;
-    border-radius: 12px;
-}
-
-.submit-message.success {
-    display: flex;
-    gap: 16px;
-    background: #dff5e8;
-    border: 1px solid #0f5132;
-    align-items: flex-start;
-}
-
-.submit-message.success i {
-    font-size: 28px;
-    color: #0f5132;
-}
-
-.submit-message.success h4 {
-    color: #0f5132;
-    font-size: 18px;
-    margin-bottom: 4px;
-}
-
-.submit-message.success p {
-    color: #0f5132;
-    font-size: 14px;
-    margin: 0;
-}
-
-.submit-message.success ul {
-    color: #0f5132;
-}
-
-/* Submit Alternative */
-.submit-alternative {
-    margin-top: 20px;
-    padding-top: 16px;
-    border-top: 1px solid var(--soft);
-    text-align: center;
-}
-
-.submit-alternative p {
-    font-size: 14px !important;
-    margin-bottom: 10px !important;
-}
-
-.submit-alt-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-}
-
-.submit-alt-buttons .btn {
-    min-height: 42px;
-    padding: 10px 20px;
-    font-size: 14px;
-}
-/* ============================================
-   TEST MODE TOGGLE
-   ============================================ */
-.verification-toggle {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 12px 16px;
-    background: var(--soft);
-    border-radius: 10px;
-    margin-bottom: 20px;
-    border: 1px solid var(--line);
-}
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 28px;
-    flex-shrink: 0;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #ccc;
-    transition: .3s;
-    border-radius: 28px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 20px;
-    width: 20px;
-    left: 4px;
-    bottom: 4px;
-    background: white;
-    transition: .3s;
-    border-radius: 50%;
-}
-
-.switch input:checked + .slider {
-    background: #b3261e;
-}
-
-.switch input:checked + .slider:before {
-    transform: translateX(22px);
-}
-
-.toggle-label {
-    font-size: 14px;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.toggle-label i {
-    color: var(--gold);
-}
-
-.test-badge {
-    font-size: 12px;
-    color: var(--muted);
-    background: var(--white);
-    padding: 2px 10px;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-}
-
-
-
-/* ============================================
-   FORM PROGRESS
-   ============================================ */
-.form-progress {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    margin-top: 16px;
-    padding: 12px 0;
-}
-
-.progress-step {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--soft);
-    color: var(--muted);
-    font-weight: 700;
-    font-size: 13px;
-    transition: all 0.3s ease;
-}
-
-.progress-step.active {
-    background: var(--gold);
-    color: var(--forest-2);
-    box-shadow: 0 4px 12px rgba(198, 161, 91, 0.3);
-}
-
-.progress-step.completed {
-    background: var(--teal);
-    color: var(--white);
-}
-
-.progress-line {
-    width: 30px;
-    height: 2px;
-    background: var(--soft);
-    transition: background 0.3s ease;
-}
-
-.progress-step.active + .progress-line,
-.progress-step.completed + .progress-line {
-    background: var(--gold);
-}
-/* ============================================
-   TAX CALCULATOR RESULTS
-   ============================================ */
-.result-summary {
-    max-width: 100%;
-}
-
-.result-section-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--forest);
-    padding: 12px 16px;
-    background: var(--soft);
-    border-radius: 8px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.result-section-title i {
-    color: var(--gold);
-}
-
-.result-subsection {
-    margin: 10px 0;
-    padding: 4px 0;
-}
-
-.result-subtitle {
-    font-weight: 700;
-    color: var(--forest);
-    font-size: 14px;
-    padding: 4px 0 8px 0;
-    border-bottom: 1px solid var(--soft);
-    margin-bottom: 6px;
-}
-
-.result-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.04);
-    font-size: 15px;
-    align-items: center;
-}
-
-.result-row:last-child {
-    border-bottom: none;
-}
-
-.result-row.highlight {
-    background: var(--soft);
-    padding: 8px 12px;
-    border-radius: 8px;
-    margin: 4px 0;
-    border-bottom: none;
-}
-
-.result-row .result-value {
-    font-weight: 700;
-    color: var(--forest);
-    text-align: right;
-}
-
-.result-row.highlight .result-value {
-    font-size: 16px;
-}
-
-.result-row.highlight[style*="var(--gold-2)"] .result-value {
-    font-size: 20px;
-}
-
-.result-row.highlight[style*="var(--forest)"] {
-    padding: 10px 14px;
-}
-
-.result-row.highlight[style*="var(--forest)"] .result-value {
-    color: var(--gold-2);
-}
-
-.result-row.highlight[style*="var(--forest)"] span {
-    color: var(--white);
-}
-
-/* Results Note */
-.results-note {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    padding: 14px 16px;
-    background: #fff8e7;
-    border-radius: 10px;
-    margin: 16px 0;
-    border-left: 4px solid var(--gold);
-}
-
-.results-note i {
-    color: var(--gold);
-    font-size: 18px;
-    margin-top: 2px;
-    flex-shrink: 0;
-}
-
-.results-note p {
-    font-size: 13px;
-    color: var(--muted);
-    margin: 0;
-}
-
-.results-link {
-    color: var(--teal);
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.results-link:hover {
-    text-decoration: underline;
-}
-
-/* ============================================
-   RADIO & CHECKBOX GROUPS
-   ============================================ */
-.radio-group,
-.checkbox-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 20px;
-    margin-top: 6px;
-}
-
-.radio-label,
-.checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    color: var(--ink);
-    padding: 4px 0;
-}
-
-.radio-label input,
-.checkbox-label input {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.radio-custom,
-.checkbox-custom {
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    border: 2px solid var(--line);
-    border-radius: 50%;
-    position: relative;
-    flex-shrink: 0;
-    transition: all 0.2s ease;
-}
-
-.checkbox-custom {
-    border-radius: 4px;
-}
-
-.radio-label input:checked + .radio-custom {
-    border-color: var(--gold);
-    border-width: 2px;
-}
-
-.radio-label input:checked + .radio-custom::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 8px;
-    height: 8px;
-    background: var(--gold);
-    border-radius: 50%;
-}
-
-.checkbox-label input:checked + .checkbox-custom {
-    border-color: var(--gold);
-    background: var(--gold);
-}
-
-.checkbox-label input:checked + .checkbox-custom::after {
-    content: '✓';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--white);
-    font-size: 12px;
-    font-weight: 900;
-}
-
-.radio-label:hover .radio-custom,
-.checkbox-label:hover .checkbox-custom {
-    border-color: var(--gold);
-}
-
-.radio-label input:checked + .radio-custom {
-    border-color: var(--gold);
-}
-
-.checkbox-label input:checked + .checkbox-custom {
-    border-color: var(--gold);
-    background: var(--gold);
-}
-/* ============================================
-   INFO BOXES
-   ============================================ */
-.info-box {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 10px 14px;
-    background: var(--soft);
-    border-radius: 8px;
-    font-size: 13px;
-    color: var(--muted);
-    border-left: 3px solid var(--gold);
-}
-
-.info-box i {
-    color: var(--gold);
-    font-size: 14px;
-    margin-top: 2px;
-    flex-shrink: 0;
-}
-
-.info-box .info-text {
-    flex: 1;
-}
-
-
-/* ============================================
-   SECTION LABELS
-   ============================================ */
-.section-label {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--forest);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.section-label i {
-    color: var(--gold);
-    font-size: 14px;
-}
-
-/* ============================================
-   FORM ROW
-   ============================================ */
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-}
-
-
-
-
-/* ============================================
-   FORM SECTION NAVIGATION
-   ============================================ */
-.form-section {
-    display: none;
-}
-
-.form-section.active {
-    display: block;
-}
-
-.form-nav {
-    display: flex;
-    gap: 12px;
-    justify-content: space-between;
-    margin-top: 20px;
-    padding-top: 16px;
-    border-top: 1px solid var(--soft);
-}
-
-.form-nav .btn {
-    min-height: 42px;
-    padding: 10px 24px;
-}
-
 
 /* ============================================
    SEO LINKS
@@ -3473,13 +2530,30 @@ small {
     .service-cards-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    .calculator-wrapper {
+    .tax-promo-wrapper {
         grid-template-columns: 1fr;
+        gap: 40px;
     }
-    .calculator-sidebar {
-        display: grid;
+    .tax-promo-content {
+        text-align: center;
+        align-items: center;
+    }
+    .tax-promo-content > p {
+        max-width: 100%;
+    }
+    .tax-promo-features {
         grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        width: 100%;
+        max-width: 500px;
+    }
+    .tax-promo-actions {
+        justify-content: center;
+    }
+    .tax-promo-image {
+        order: -1;
+    }
+    .tax-promo-visual {
+        max-width: 380px;
     }
     .team-grid {
         grid-template-columns: 1fr 1fr;
@@ -3633,127 +2707,17 @@ small {
     .mission-grid {
         grid-template-columns: 1fr;
     }
-    .calculator-container {
-        padding: 24px 18px;
+    .tax-promo-features {
+        grid-template-columns: 1fr 1fr;
     }
-    .calculator-header {
-        flex-direction: column;
-        text-align: center;
+    .tax-promo-visual {
+        padding: 24px 20px;
+        max-width: 340px;
     }
-    .calculator-header i {
-        font-size: 28px;
-        padding: 12px;
-    }
-    .calculator-sidebar {
-        grid-template-columns: 1fr;
-    }
-    .business-plan-form .form-row {
-        grid-template-columns: 1fr;
-    }
-    .form-container {
-        padding: 28px 20px;
-    }
-    .plan-preview {
-        padding: 30px 24px;
-    }
-    .plan-preview .plan-header h1 {
-        font-size: 26px;
-    }
-
-}
-
-/* ============================================
-   SUBMIT SECTION - RESPONSIVE
-   ============================================ */
-@media (max-width: 820px) {
-    .submit-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 28px 20px;
-    }
-
-    .submit-card::before {
-        right: 15px;
-        font-size: 12px;
-        padding: 3px 14px;
-    }
-
-    .submit-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 24px;
-    }
-
-    .submit-form-row {
-        grid-template-columns: 1fr;
-    }
-
-    .submit-alt-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .submit-alt-buttons .btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .form-progress {
-        gap: 4px;
-    }
-
-    .progress-step {
-        width: 28px;
-        height: 28px;
-        font-size: 11px;
-    }
-
-    .progress-line {
-        width: 20px;
+    .tax-visual-bars {
+        height: 110px;
     }
 }
-
-@media (max-width: 600px) {
-    .submit-card {
-        padding: 20px 14px;
-    }
-
-    .submit-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 20px;
-    }
-
-    .submit-plan-btn {
-        font-size: 14px;
-        padding: 12px 20px;
-    }
-
-    .form-nav {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .form-nav .btn {
-        width: 100%;
-        justify-content: center;
-    }
-}
-@media (max-width: 600px) {
-    .verification-toggle {
-        flex-wrap: wrap;
-        padding: 10px 12px;
-    }
-    .toggle-label {
-        font-size: 13px;
-    }
-    .test-badge {
-        font-size: 11px;
-        padding: 1px 8px;
-    }
-}
-
 
 /* MOBILE LARGE */
 @media (max-width: 600px) {
@@ -4086,97 +3050,31 @@ small {
     .team-card div {
         padding: 16px 20px 20px;
     }
-    .form-container {
-        padding: 18px 14px;
+    .tax-promo-features {
+        grid-template-columns: 1fr;
+        gap: 6px;
     }
-    .business-plan-form .form-section h3 {
-        font-size: 16px;
+    .tax-promo-feature {
+        font-size: 13px;
+        justify-content: center;
     }
-    .plan-preview {
-        padding: 20px 16px;
+    .tax-promo-actions {
+        flex-direction: column;
+        width: 100%;
     }
-    .plan-preview .plan-header h1 {
-        font-size: 22px;
-    }
-    .plan-preview .plan-section h3 {
-        font-size: 17px;
-    }
-    .plan-preview .plan-section p {
-        font-size: 14px;
-    }
-    .download-actions .btn {
+    .tax-promo-actions .btn {
         width: 100%;
         justify-content: center;
     }
-    .calculator-container {
-        padding: 18px 14px;
+    .tax-promo-visual {
+        padding: 20px 16px;
+        max-width: 100%;
     }
-    .calculator-header {
-        gap: 12px;
+    .tax-visual-bars {
+        height: 100px;
     }
-    .calculator-header i {
-        font-size: 24px;
-        padding: 10px;
-    }
-    .result-row {
-        font-size: 14px;
-        flex-wrap: wrap;
-        gap: 4px;
-    }
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-    .info-box {
-        font-size: 12px;
-        padding: 8px 12px;
-        flex-wrap: wrap;
-    }
-}
-@media (max-width: 600px) {
-    .radio-group,
-    .checkbox-group {
-        gap: 6px 14px;
-    }
-
-    .radio-label,
-    .checkbox-label {
-        font-size: 13px;
-        padding: 2px 0;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-}
-/* Responsive */
-@media (max-width: 600px) {
-    .result-section-title {
-        font-size: 16px;
-        padding: 10px 12px;
-    }
-
-    .result-row {
-        font-size: 14px;
-        flex-wrap: wrap;
-        gap: 2px;
-        padding: 5px 0;
-    }
-
-    .result-row .result-value {
-        font-size: 14px;
-    }
-
-    .result-row.highlight .result-value {
-        font-size: 15px;
-    }
-
-    .result-row.highlight[style*="var(--gold-2)"] .result-value {
-        font-size: 17px;
-    }
-
-    .result-subtitle {
-        font-size: 13px;
+    .tax-visual-net strong {
+        font-size: 20px;
     }
 }
 
@@ -4268,13 +3166,18 @@ small {
     .back-to-top i {
         font-size: 14px;
     }
-    .form-container {
-        padding: 14px 10px;
+    .tax-promo-visual {
+        padding: 16px 12px;
     }
-    .plan-preview {
-        padding: 14px 12px;
+    .tax-visual-bars {
+        height: 80px;
     }
-    .plan-preview .plan-header h1 {
+    .tax-visual-net {
+        padding: 10px 14px;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    .tax-visual-net strong {
         font-size: 18px;
     }
 }
