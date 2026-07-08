@@ -17,7 +17,7 @@
     <meta name="twitter:title" content="Makivan Consultants | Tax Calculator">
     <meta name="twitter:description" content="Complete KRA tax calculator for Kenya.">
     <meta name="twitter:image" content="https://makivanconsultants.co.ke/images/taxconsultation.jpeg">
-    <link rel="icon" type="image/jpeg" href="images/makivanlogo.jpg">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -147,7 +147,7 @@
                                 <h4 class="section-label"><i class="fa-solid fa-input"></i> Enter Amount (KES)</h4>
                                 <div class="input-wrapper">
                                     <span class="input-prefix">KES</span>
-                                    <input type="text" id="amountInput" class="calculator-input" placeholder="e.g. 100,000" value="100,000">
+                                    <input type="text" id="amountInput" class="calculator-input" placeholder="e.g. 100,000" value="">
                                 </div>
                             </div>
 
@@ -156,7 +156,7 @@
                                 <h4 class="section-label"><i class="fa-solid fa-piggy-bank"></i> Pension Contribution (Optional)</h4>
                                 <div class="input-wrapper">
                                     <span class="input-prefix">KES</span>
-                                    <input type="text" id="pensionInput" class="calculator-input" placeholder="e.g. 5,000" value="0">
+                                    <input type="text" id="pensionInput" class="calculator-input" placeholder="e.g. 5,000" value="">
                                 </div>
                                 <small style="display:block;color:var(--muted);font-size:12px;margin-top:4px;">Pension contributions are deducted from taxable income.</small>
                             </div>
@@ -166,7 +166,7 @@
                                 <h4 class="section-label"><i class="fa-solid fa-house"></i> Mortgage Interest (Optional)</h4>
                                 <div class="input-wrapper">
                                     <span class="input-prefix">KES</span>
-                                    <input type="text" id="mortgageInput" class="calculator-input" placeholder="e.g. 10,000" value="0">
+                                    <input type="text" id="mortgageInput" class="calculator-input" placeholder="e.g. 10,000" value="">
                                 </div>
                                 <small style="display:block;color:var(--muted);font-size:12px;margin-top:4px;">Mortgage interest is deducted from taxable income.</small>
                             </div>
@@ -223,14 +223,14 @@
                                     <label for="vatSales">Annual Sales (KES)</label>
                                     <div class="input-wrapper">
                                         <span class="input-prefix">KES</span>
-                                        <input type="text" id="vatSales" class="calculator-input" placeholder="e.g. 5,000,000" value="5,000,000">
+                                        <input type="text" id="vatSales" class="calculator-input" placeholder="e.g. 5,000,000" value="">
                                     </div>
                                 </div>
                                 <div class="calculator-section">
                                     <label for="vatPurchases">Annual Purchases with VAT (KES)</label>
                                     <div class="input-wrapper">
                                         <span class="input-prefix">KES</span>
-                                        <input type="text" id="vatPurchases" class="calculator-input" placeholder="e.g. 3,000,000" value="3,000,000">
+                                        <input type="text" id="vatPurchases" class="calculator-input" placeholder="e.g. 3,000,000" value="">
                                     </div>
                                 </div>
                             </div>
@@ -244,7 +244,7 @@
                                     <label for="turnoverAmount">Monthly Turnover (KES)</label>
                                     <div class="input-wrapper">
                                         <span class="input-prefix">KES</span>
-                                        <input type="text" id="turnoverAmount" class="calculator-input" placeholder="e.g. 100,000" value="100,000">
+                                        <input type="text" id="turnoverAmount" class="calculator-input" placeholder="e.g. 100,000" value="">
                                     </div>
                                 </div>
                             </div>
@@ -258,14 +258,14 @@
                                     <label for="rentalIncome">Gross Rental Income (KES)</label>
                                     <div class="input-wrapper">
                                         <span class="input-prefix">KES</span>
-                                        <input type="text" id="rentalIncome" class="calculator-input" placeholder="e.g. 1,000,000" value="1,000,000">
+                                        <input type="text" id="rentalIncome" class="calculator-input" placeholder="e.g. 1,000,000" value="">
                                     </div>
                                 </div>
                                 <div class="calculator-section">
                                     <label for="rentalExpenses">Allowable Expenses (KES)</label>
                                     <div class="input-wrapper">
                                         <span class="input-prefix">KES</span>
-                                        <input type="text" id="rentalExpenses" class="calculator-input" placeholder="e.g. 200,000" value="200,000">
+                                        <input type="text" id="rentalExpenses" class="calculator-input" placeholder="e.g. 200,000" value="">
                                     </div>
                                 </div>
                             </div>
@@ -605,9 +605,12 @@
 
                 input.addEventListener('blur', function() {
                     let raw = this.value.replace(/,/g, '');
-                    if (raw === '' || raw === '-') { this.value = '0'; return; }
+                    if (raw === '' || raw === '-') { 
+                        this.value = ''; 
+                        return; 
+                    }
                     let num = parseFloat(raw);
-                    if (!isNaN(num)) {
+                    if (!isNaN(num) && num > 0) {
                         this.value = num.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
                     }
                 });
@@ -747,7 +750,6 @@
                 e.preventDefault();
 
                 const taxType = document.querySelector('input[name="taxType"]:checked').value;
-
                 let resultHTML = '';
 
                 if (taxType === 'paye') {
@@ -792,6 +794,441 @@
                             const nssf = calculateNSSF(estimatedGross, nssfOption);
                             const shif = applySHIF ? calculateSHIF(estimatedGross) : 0;
                             const housing = applyHousing ? estimatedGross * HOUSING_LEVY_RATE : 0;
+                            const taxablePay = estimatedGross - nssf.employee - shif - housing - pension - mortgage;
+                            const grossPAYE = calculatePAYE(Math.max(0, taxablePay));
+                            const netPAYE = Math.max(0, grossPAYE - PERSONAL_RELIEF);
+                            const totalDeductions = nssf.employee + shif + housing + netPAYE;
+                            const calculatedNet = estimatedGross - totalDeductions;
+                            const diff = calculatedNet - amount;
+
+                            if (Math.abs(diff) < tolerance) {
+                                found = true;
+                                grossSalary = Math.round(estimatedGross * 100) / 100;
+                            } else if (diff > 0) {
+                                estimatedGross -= Math.max(1, Math.abs(diff) * 0.5);
+                            } else {
+                                estimatedGross += Math.max(1, Math.abs(diff) * 0.5);
+                            }
+
+                            iteration++;
+                            if (estimatedGross < 0) {
+                                estimatedGross = amount * 1.5;
+                                break;
+                            }
+                        }
+
+                        if (!found) {
+                            grossSalary = Math.round(estimatedGross * 100) / 100;
+                        }
+                        payTypeLabel = 'Net Pay (Target: ' + formatCurrency(amount) + ')';
+                    }
+
+                    const nssf = applyNSSF ? calculateNSSF(grossSalary, nssfOption) : { employee: 0, employer: 0, label: 'Not applicable' };
+                    const shif = applySHIF ? calculateSHIF(grossSalary) : 0;
+                    const housing = applyHousing ? grossSalary * HOUSING_LEVY_RATE : 0;
+
+                    const taxablePay = grossSalary - nssf.employee - shif - housing - pension - mortgage;
+
+                    const grossPAYE = applyPAYE ? calculatePAYE(Math.max(0, taxablePay)) : 0;
+                    const netPAYE = applyPAYE ? Math.max(0, grossPAYE - PERSONAL_RELIEF) : 0;
+
+                    const totalEmployeeDeductions = nssf.employee + shif + housing + netPAYE;
+                    const netSalary = grossSalary - totalEmployeeDeductions;
+                    const totalEmployerCost = grossSalary + nssf.employer + shif + housing;
+
+                    const employmentLabels = {
+                        'regular': 'Regular Employee',
+                        'director': 'Company Director',
+                        'contract': 'Contract Employee',
+                        'self': 'Self-Employed'
+                    };
+
+                    const shifDisplay = grossSalary < SHIF_LOW_INCOME_THRESHOLD ? '(Flat Rate 300)' : '(2.75%)';
+
+                    function getTaxBandsBreakdown(taxablePay) {
+                        let remaining = taxablePay;
+                        let bandsHTML = '';
+                        const bandLabels = [
+                            { label: '10% (0 - 24,000)', limit: 24000, rate: 0.10 },
+                            { label: '25% (24,001 - 32,333)', limit: 8333, rate: 0.25 },
+                            { label: '30% (32,334 - 500,000)', limit: 467667, rate: 0.30 },
+                            { label: '32.5% (500,001 - 800,000)', limit: 300000, rate: 0.325 },
+                            { label: '35% (Above 800,000)', limit: Infinity, rate: 0.35 }
+                        ];
+                        
+                        for (const band of bandLabels) {
+                            if (remaining > 0) {
+                                const amount = Math.min(remaining, band.limit);
+                                const tax = amount * band.rate;
+                                if (amount > 0) {
+                                    bandsHTML += `
+                                        <div class="result-row">
+                                            <span>${band.label}:</span>
+                                            <span class="result-value">${formatCurrency(tax)} <span style="font-size:11px;color:var(--muted);">(${formatCurrency(amount)})</span></span>
+                                        </div>
+                                    `;
+                                }
+                                remaining -= amount;
+                            }
+                        }
+                        return bandsHTML;
+                    }
+
+                    resultHTML = `
+                        <div class="result-summary">
+                            <div class="result-section-title">
+                                <i class="fa-solid fa-file-invoice-dollar"></i> PAYE Tax Breakdown
+                                <span style="font-size:12px;font-weight:400;color:var(--muted);margin-left:auto;">${employmentLabels[employmentType]}</span>
+                            </div>
+
+                            <div class="result-subsection">
+                                <div class="result-subtitle">Income</div>
+                                ${payTypeLabel.includes('Net Pay (Target') ? `
+                                <div class="result-row">
+                                    <span>Target Net Pay:</span>
+                                    <span class="result-value">${formatCurrency(amount)}</span>
+                                </div>
+                                <div class="result-row highlight" style="background:var(--forest);color:var(--white);border-radius:8px;padding:10px 14px;">
+                                    <span style="color:var(--white);"><strong>Calculated Gross Salary:</strong></span>
+                                    <span class="result-value" style="color:var(--gold-2);"><strong>${formatCurrency(grossSalary)}</strong></span>
+                                </div>
+                                ` : `
+                                <div class="result-row highlight" style="background:var(--forest);color:var(--white);border-radius:8px;padding:10px 14px;">
+                                    <span style="color:var(--white);"><strong>Gross Salary:</strong></span>
+                                    <span class="result-value" style="color:var(--gold-2);"><strong>${formatCurrency(grossSalary)}</strong></span>
+                                </div>
+                                `}
+                                ${payType === 'basic' ? `
+                                <div class="result-row">
+                                    <span>Basic Pay:</span>
+                                    <span class="result-value">${formatCurrency(amount)}</span>
+                                </div>
+                                ` : ''}
+                                ${pension > 0 ? `<div class="result-row"><span>Pension Contribution:</span><span class="result-value">${formatCurrency(pension)}</span></div>` : ''}
+                                ${mortgage > 0 ? `<div class="result-row"><span>Mortgage Interest:</span><span class="result-value">${formatCurrency(mortgage)}</span></div>` : ''}
+                                ${isSelf ? `<div class="result-row" style="color:#b3261e;"><span>⚠️ Self-Employed:</span><span class="result-value" style="color:#b3261e;">No PAYE at source</span></div>` : ''}
+                            </div>
+
+                            <div class="result-subsection">
+                                <div class="result-subtitle">Statutory Deductions</div>
+                                ${applyNSSF ? `
+                                <div class="result-row">
+                                    <span>NSSF (${nssf.label}):</span>
+                                    <span class="result-value">${formatCurrency(nssf.employee)}</span>
+                                </div>
+                                ` : `
+                                <div class="result-row" style="color:var(--muted);">
+                                    <span>NSSF:</span>
+                                    <span class="result-value">Not applicable</span>
+                                </div>
+                                `}
+                                ${applySHIF ? `
+                                <div class="result-row">
+                                    <span>SHIF ${shifDisplay}:</span>
+                                    <span class="result-value">${formatCurrency(shif)}</span>
+                                </div>
+                                ` : `
+                                <div class="result-row" style="color:var(--muted);">
+                                    <span>SHIF:</span>
+                                    <span class="result-value">Not applicable</span>
+                                </div>
+                                `}
+                                ${applyHousing ? `
+                                <div class="result-row">
+                                    <span>Housing Levy (1.5%):</span>
+                                    <span class="result-value">${formatCurrency(housing)}</span>
+                                </div>
+                                ` : `
+                                <div class="result-row" style="color:var(--muted);">
+                                    <span>Housing Levy:</span>
+                                    <span class="result-value">Not applicable</span>
+                                </div>
+                                `}
+                                <div class="result-row" style="border-bottom:2px solid var(--line);">
+                                    <span><strong>Total Statutory Deductions:</strong></span>
+                                    <span class="result-value"><strong>${formatCurrency(nssf.employee + shif + housing)}</strong></span>
+                                </div>
+                            </div>
+
+                            <div class="result-subsection">
+                                <div class="result-subtitle">Tax Calculation</div>
+                                ${applyPAYE ? `
+                                <div class="result-row">
+                                    <span>Taxable Pay:</span>
+                                    <span class="result-value">${formatCurrency(taxablePay)}</span>
+                                </div>
+                                <div class="result-row">
+                                    <span>Gross PAYE (Before Relief):</span>
+                                    <span class="result-value">${formatCurrency(grossPAYE)}</span>
+                                </div>
+                                <div class="result-row">
+                                    <span>Personal Relief:</span>
+                                    <span class="result-value">- ${formatCurrency(PERSONAL_RELIEF)}</span>
+                                </div>
+                                <div class="result-row highlight" style="background:#fff3cd;border-radius:8px;padding:10px 14px;">
+                                    <span><strong>Net PAYE (Tax):</strong></span>
+                                    <span class="result-value"><strong>${formatCurrency(netPAYE)}</strong></span>
+                                </div>
+                                ` : `
+                                <div class="result-row" style="color:#b3261e;background:#fef2f2;border-radius:8px;padding:10px 14px;">
+                                    <span><strong>⚠️ No PAYE:</strong></span>
+                                    <span class="result-value" style="color:#b3261e;"><strong>Self-employed files own taxes</strong></span>
+                                </div>
+                                `}
+                            </div>
+
+                            <div class="result-subsection">
+                                <div class="result-subtitle">Summary</div>
+                                <div class="result-row">
+                                    <span>Total Employee Deductions:</span>
+                                    <span class="result-value">${formatCurrency(totalEmployeeDeductions)}</span>
+                                </div>
+                                <div class="result-row">
+                                    <span>Effective Tax Rate:</span>
+                                    <span class="result-value">${applyPAYE ? ((netPAYE / grossSalary) * 100).toFixed(2) + '%' : '0.00%'}</span>
+                                </div>
+                                <div class="result-row highlight" style="background:var(--gold-2);color:var(--forest-2);border-radius:8px;padding:12px 14px;">
+                                    <span style="color:var(--forest-2);"><strong>💰 Net Take-Home Salary:</strong></span>
+                                    <span class="result-value" style="color:var(--forest-2);font-size:20px;"><strong>${formatCurrency(netSalary)}</strong></span>
+                                </div>
+                                <div class="result-row">
+                                    <span>Net Income Percentage:</span>
+                                    <span class="result-value">${((netSalary / grossSalary) * 100).toFixed(2)}%</span>
+                                </div>
+                            </div>
+
+                            ${!isSelf ? `
+                            <div class="result-subsection" style="margin-top:12px;padding-top:12px;border-top:2px solid var(--gold);">
+                                <div class="result-subtitle">Employer Cost (Estimate)</div>
+                                <div class="result-row">
+                                    <span>Gross Salary:</span>
+                                    <span class="result-value">${formatCurrency(grossSalary)}</span>
+                                </div>
+                                ${applyNSSF ? `
+                                <div class="result-row">
+                                    <span>Employer NSSF:</span>
+                                    <span class="result-value">${formatCurrency(nssf.employer)}</span>
+                                </div>
+                                ` : ''}
+                                ${applySHIF ? `
+                                <div class="result-row">
+                                    <span>Employer SHIF:</span>
+                                    <span class="result-value">${formatCurrency(shif)}</span>
+                                </div>
+                                ` : ''}
+                                ${applyHousing ? `
+                                <div class="result-row">
+                                    <span>Employer Housing Levy:</span>
+                                    <span class="result-value">${formatCurrency(housing)}</span>
+                                </div>
+                                ` : ''}
+                                <div class="result-row highlight" style="background:var(--soft);border-radius:8px;padding:10px 14px;">
+                                    <span><strong>Total Employer Cost:</strong></span>
+                                    <span class="result-value"><strong>${formatCurrency(totalEmployerCost)}</strong></span>
+                                </div>
+                            </div>
+                            ` : ''}
+
+                            ${applyPAYE ? `
+                            <div class="result-subsection" style="margin-top:12px;padding-top:12px;border-top:2px solid var(--soft);">
+                                <div class="result-subtitle">PAYE Tax Bands Breakdown</div>
+                                ${getTaxBandsBreakdown(taxablePay)}
+                            </div>
+                            ` : ''}
+                        </div>
+                    `;
+
+                } else if (taxType === 'vat') {
+                    // ============================================
+                    // VAT CALCULATION
+                    // ============================================
+                    const sales = parseFormattedNumber(document.getElementById('vatSales').value);
+                    const purchases = parseFormattedNumber(document.getElementById('vatPurchases').value);
+
+                    if (sales <= 0) {
+                        alert('Please enter valid sales amount.');
+                        return;
+                    }
+
+                    const vatOnSales = sales * VAT_RATE;
+                    const vatOnPurchases = purchases * VAT_RATE;
+                    const vatPayable = vatOnSales - vatOnPurchases;
+
+                    resultHTML = `
+                        <div class="result-summary">
+                            <div class="result-section-title">
+                                <i class="fa-solid fa-file-invoice"></i> VAT Estimation
+                            </div>
+                            <div class="result-row">
+                                <span>Annual Sales:</span>
+                                <span class="result-value">${formatCurrency(sales)}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Annual Purchases:</span>
+                                <span class="result-value">${formatCurrency(purchases)}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>VAT on Sales (16%):</span>
+                                <span class="result-value">${formatCurrency(vatOnSales)}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>VAT on Purchases (16%):</span>
+                                <span class="result-value">${formatCurrency(vatOnPurchases)}</span>
+                            </div>
+                            <div class="result-row highlight" style="background:#fff3cd;border-radius:8px;padding:10px 14px;">
+                                <span><strong>VAT Payable/Refundable:</strong></span>
+                                <span class="result-value"><strong>${formatCurrency(vatPayable)}</strong></span>
+                            </div>
+                            <div class="result-row" style="border-top:2px solid var(--gold);padding-top:12px;margin-top:8px;">
+                                <span>Monthly VAT (approx):</span>
+                                <span class="result-value">${formatCurrency(vatPayable / 12)}</span>
+                            </div>
+                        </div>
+                    `;
+
+                } else if (taxType === 'turnover') {
+                    // ============================================
+                    // TURNOVER TAX CALCULATION
+                    // ============================================
+                    const turnover = parseFormattedNumber(document.getElementById('turnoverAmount').value);
+
+                    if (turnover <= 0) {
+                        alert('Please enter a valid turnover amount.');
+                        return;
+                    }
+
+                    const turnoverTax = turnover * TURNOVER_TAX_RATE;
+
+                    resultHTML = `
+                        <div class="result-summary">
+                            <div class="result-section-title">
+                                <i class="fa-solid fa-shop"></i> Turnover Tax Calculation
+                            </div>
+                            <div class="result-row">
+                                <span>Monthly Turnover:</span>
+                                <span class="result-value">${formatCurrency(turnover)}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Tax Rate:</span>
+                                <span class="result-value">3%</span>
+                            </div>
+                            <div class="result-row highlight" style="background:#fff3cd;border-radius:8px;padding:10px 14px;">
+                                <span><strong>Turnover Tax Payable:</strong></span>
+                                <span class="result-value"><strong>${formatCurrency(turnoverTax)}</strong></span>
+                            </div>
+                            <div class="result-row">
+                                <span>Net Income:</span>
+                                <span class="result-value">${formatCurrency(turnover - turnoverTax)}</span>
+                            </div>
+                            <div class="result-row" style="border-top:2px solid var(--gold);padding-top:12px;margin-top:8px;">
+                                <span>Annual Turnover Tax (approx):</span>
+                                <span class="result-value">${formatCurrency(turnoverTax * 12)}</span>
+                            </div>
+                        </div>
+                    `;
+
+                } else if (taxType === 'rental') {
+                    // ============================================
+                    // RENTAL INCOME TAX CALCULATION
+                    // ============================================
+                    const rentalIncome = parseFormattedNumber(document.getElementById('rentalIncome').value);
+                    const rentalExpenses = parseFormattedNumber(document.getElementById('rentalExpenses').value);
+
+                    if (rentalIncome <= 0) {
+                        alert('Please enter a valid rental income amount.');
+                        return;
+                    }
+
+                    const netRentalIncome = rentalIncome - rentalExpenses;
+                    const rentalTax = netRentalIncome * RENTAL_TAX_RATE;
+
+                    resultHTML = `
+                        <div class="result-summary">
+                            <div class="result-section-title">
+                                <i class="fa-solid fa-house-chimney"></i> Rental Income Tax
+                            </div>
+                            <div class="result-row">
+                                <span>Gross Rental Income:</span>
+                                <span class="result-value">${formatCurrency(rentalIncome)}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Allowable Expenses:</span>
+                                <span class="result-value">${formatCurrency(rentalExpenses)}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Net Rental Income:</span>
+                                <span class="result-value">${formatCurrency(netRentalIncome)}</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Tax Rate:</span>
+                                <span class="result-value">10%</span>
+                            </div>
+                            <div class="result-row highlight" style="background:#fff3cd;border-radius:8px;padding:10px 14px;">
+                                <span><strong>Rental Income Tax:</strong></span>
+                                <span class="result-value"><strong>${formatCurrency(rentalTax)}</strong></span>
+                            </div>
+                            <div class="result-row">
+                                <span>Net Income:</span>
+                                <span class="result-value">${formatCurrency(rentalIncome - rentalTax)}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                resultsContent.innerHTML = resultHTML;
+                resultsSection.style.display = 'block';
+                resultsContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // ============================================
+            // RESET
+            // ============================================
+            function resetCalculator() {
+                amountInput.value = '';
+                pensionInput.value = '';
+                mortgageInput.value = '';
+                document.getElementById('vatSales').value = '';
+                document.getElementById('vatPurchases').value = '';
+                document.getElementById('turnoverAmount').value = '';
+                document.getElementById('rentalIncome').value = '';
+                document.getElementById('rentalExpenses').value = '';
+                document.querySelector('input[name="taxType"][value="paye"]').checked = true;
+                document.querySelector('input[name="employmentType"][value="regular"]').checked = true;
+                document.querySelector('input[name="payType"][value="gross"]').checked = true;
+                document.querySelector('input[name="nssfOption"][value="tier1"]').checked = true;
+                document.getElementById('includeSHIF').checked = true;
+                document.getElementById('includeHousing').checked = true;
+                payeFields.style.display = 'block';
+                vatFields.style.display = 'none';
+                turnoverFields.style.display = 'none';
+                rentalFields.style.display = 'none';
+                resultsSection.style.display = 'none';
+                resultsContent.innerHTML = '';
+                amountInput.focus();
+                nssfInfoText.textContent = 'Tier 1: 6% of pensionable pay up to 9,000 (KES 540.00 max per side)';
+                employmentInfoText.textContent = 'Regular Employee: Full deductions apply (NSSF, SHIF, Housing Levy, PAYE).';
+            }
+
+            // ============================================
+            // EVENT LISTENERS
+            // ============================================
+            form.addEventListener('submit', calculateTax);
+            resetBtn.addEventListener('click', resetCalculator);
+
+            amountInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    form.dispatchEvent(new Event('submit'));
+                }
+            });
+
+            console.log('🚀 KRA Tax Calculator Loaded Successfully!');
+            console.log('📊 All fields are blank - enter values to calculate');
+            console.log('📋 Tax Types: PAYE, VAT, Turnover Tax, Rental Income Tax');
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>g = applyHousing ? estimatedGross * HOUSING_LEVY_RATE : 0;
                             const taxablePay = estimatedGross - nssf.employee - shif - housing - pension - mortgage;
                             const grossPAYE = calculatePAYE(Math.max(0, taxablePay));
                             const netPAYE = Math.max(0, grossPAYE - PERSONAL_RELIEF);
