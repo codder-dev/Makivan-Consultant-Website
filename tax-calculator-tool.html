@@ -76,22 +76,22 @@
                                 <label class="radio-label">
                                     <input type="radio" name="nssfYear" value="2026" checked>
                                     <span class="radio-custom"></span>
-                                    2026 (Tier 1: 9,000 | Tier 2: 108,000)
+                                    2026 (Tier 1: 9,000)
                                 </label>
                                 <label class="radio-label">
                                     <input type="radio" name="nssfYear" value="2025">
                                     <span class="radio-custom"></span>
-                                    2025 (Tier 1: 8,000 | Tier 2: 72,000)
+                                    2025 (Tier 1: 8,000)
                                 </label>
                                 <label class="radio-label">
                                     <input type="radio" name="nssfYear" value="2024">
                                     <span class="radio-custom"></span>
-                                    2024 (Tier 1: 7,000 | Tier 2: 36,000)
+                                    2024 (Tier 1: 7,000)
                                 </label>
                             </div>
                             <div class="info-box" style="margin-top:10px;">
                                 <i class="fa-solid fa-info-circle"></i>
-                                <span id="nssfInfo">2026: Tier 1: 6% up to 9,000 | Tier 2: 6% from 9,001 to 108,000</span>
+                                <span id="nssfInfo">2026: Employee NSSF: 6% up to 9,000 (KES 540 max)</span>
                             </div>
                         </div>
 
@@ -166,12 +166,8 @@
                             <span>KES 2,400/mo</span>
                         </div>
                         <div class="sidebar-item">
-                            <span>NSSF Tier 1 (2026):</span>
-                            <span>6% up to 9,000</span>
-                        </div>
-                        <div class="sidebar-item">
-                            <span>NSSF Tier 2 (2026):</span>
-                            <span>6% up to 108,000</span>
+                            <span>NSSF Employee:</span>
+                            <span>6% up to Tier 1</span>
                         </div>
                         <div class="sidebar-item">
                             <span>SHIF (Low Income):</span>
@@ -215,8 +211,8 @@
                     <p>10% on first 24,000; 25% on next 8,333; 30% on next 467,667; 32.5% on next 300,000; 35% on amounts above 800,000.</p>
                 </details>
                 <details data-aos="fade-up" data-aos-delay="150">
-                    <summary><i class="fa-solid fa-plus"></i> What are the NSSF rates for 2026?</summary>
-                    <p>Tier 1: 6% of pensionable pay up to 9,000 (max 540 per side). Tier 2: 6% from 9,001 to 108,000 (max 5,940 per side).</p>
+                    <summary><i class="fa-solid fa-plus"></i> How is NSSF calculated for employees?</summary>
+                    <p>Employee NSSF is 6% of pensionable pay up to the Tier 1 limit (2026: 9,000). This means max employee NSSF is KES 540.</p>
                 </details>
                 <details data-aos="fade-up" data-aos-delay="200">
                     <summary><i class="fa-solid fa-plus"></i> How is SHIF calculated?</summary>
@@ -332,7 +328,6 @@
             // ============================================
 
             // PAYE Bands (2025 - From 1st July 2023)
-            // Monthly Taxable Income
             const PAYE_BANDS = [
                 { upTo: 24000, rate: 0.10 },
                 { upTo: 32333, rate: 0.25 },
@@ -341,7 +336,7 @@
                 { above: 800000, rate: 0.35 }
             ];
 
-            // NSSF Tiers by Year
+            // NSSF Tiers by Year (Employee ONLY Tier 1)
             const NSSF_RATES = {
                 '2026': {
                     tier1: { upTo: 9000, rate: 0.06 },
@@ -376,40 +371,40 @@
                     const year = this.value;
                     const info = document.getElementById('nssfInfo');
                     if (year === '2026') {
-                        info.textContent = '2026: Tier 1: 6% up to 9,000 | Tier 2: 6% from 9,001 to 108,000';
+                        info.textContent = '2026: Employee NSSF: 6% up to 9,000 (KES 540 max)';
                     } else if (year === '2025') {
-                        info.textContent = '2025: Tier 1: 6% up to 8,000 | Tier 2: 6% from 8,001 to 72,000';
+                        info.textContent = '2025: Employee NSSF: 6% up to 8,000 (KES 480 max)';
                     } else if (year === '2024') {
-                        info.textContent = '2024: Tier 1: 6% up to 7,000 | Tier 2: 6% from 7,001 to 36,000';
+                        info.textContent = '2024: Employee NSSF: 6% up to 7,000 (KES 420 max)';
                     }
                 });
             });
 
             // ============================================
-            // CALCULATE NSSF
+            // CALCULATE NSSF (KRA iTax Style - Tier 1 ONLY for Employee)
             // ============================================
             function calculateNSSF(grossSalary, year) {
                 const rates = NSSF_RATES[year] || NSSF_RATES['2026'];
                 
-                // Tier 1
+                // EMPLOYEE: Tier 1 ONLY (matches KRA iTax)
                 const tier1Amount = Math.min(grossSalary, rates.tier1.upTo);
-                const tier1Contribution = tier1Amount * rates.tier1.rate;
+                const employeeNSSF = tier1Amount * rates.tier1.rate;
                 
-                // Tier 2
-                let tier2Contribution = 0;
+                // EMPLOYER: Tier 1 + Tier 2
+                const employerTier1 = tier1Amount * rates.tier1.rate;
+                
+                let employerTier2 = 0;
                 if (grossSalary > rates.tier2.from) {
                     const tier2Base = Math.min(grossSalary - rates.tier2.from, rates.tier2.upTo - rates.tier2.from);
-                    tier2Contribution = tier2Base * rates.tier2.rate;
+                    employerTier2 = tier2Base * rates.tier2.rate;
                 }
-                
-                const employeeNSSF = tier1Contribution + tier2Contribution;
-                const employerNSSF = employeeNSSF; // Employer matches employee contribution
+                const employerNSSF = employerTier1 + employerTier2;
                 
                 return {
-                    employee: employeeNSSF,
-                    employer: employerNSSF,
-                    tier1: tier1Contribution,
-                    tier2: tier2Contribution,
+                    employee: employeeNSSF,      // Tier 1 ONLY
+                    employer: employerNSSF,       // Tier 1 + Tier 2
+                    tier1: employerTier1,
+                    tier2: employerTier2,
                     total: employeeNSSF + employerNSSF
                 };
             }
@@ -439,21 +434,21 @@
                     remaining -= band1;
                 }
                 
-                // Band 2: 24,001 - 32,333 at 25% (next 8,333)
+                // Band 2: 24,001 - 32,333 at 25%
                 if (remaining > 0) {
                     const band2 = Math.min(remaining, 8333);
                     grossPAYE += band2 * 0.25;
                     remaining -= band2;
                 }
                 
-                // Band 3: 32,334 - 500,000 at 30% (next 467,667)
+                // Band 3: 32,334 - 500,000 at 30%
                 if (remaining > 0) {
                     const band3 = Math.min(remaining, 467667);
                     grossPAYE += band3 * 0.30;
                     remaining -= band3;
                 }
                 
-                // Band 4: 500,001 - 800,000 at 32.5% (next 300,000)
+                // Band 4: 500,001 - 800,000 at 32.5%
                 if (remaining > 0) {
                     const band4 = Math.min(remaining, 300000);
                     grossPAYE += band4 * 0.325;
@@ -493,7 +488,7 @@
                 const includeHousing = document.getElementById('includeHousing').checked;
 
                 // ============================================
-                // 1. NSSF Calculation
+                // 1. NSSF Calculation (KRA iTax Style)
                 // ============================================
                 const nssf = calculateNSSF(grossSalary, nssfYear);
                 const employeeNSSF = nssf.employee;
@@ -531,10 +526,12 @@
                 // 7. Results Display
                 // ============================================
                 const nssfYearDisplay = {
-                    '2026': '2026 (Tier 1: 9,000 | Tier 2: 108,000)',
-                    '2025': '2025 (Tier 1: 8,000 | Tier 2: 72,000)',
-                    '2024': '2024 (Tier 1: 7,000 | Tier 2: 36,000)'
+                    '2026': '2026 (Tier 1: 9,000)',
+                    '2025': '2025 (Tier 1: 8,000)',
+                    '2024': '2024 (Tier 1: 7,000)'
                 }[nssfYear] || '2026';
+
+                const shifDisplay = grossSalary < SHIF_LOW_INCOME_THRESHOLD ? '(Flat Rate 300)' : '(2.75%)';
 
                 const html = `
                     <div class="result-summary">
@@ -560,7 +557,7 @@
                             </div>
                             ${includeSHIF ? `
                             <div class="result-row">
-                                <span>SHIF ${grossSalary < SHIF_LOW_INCOME_THRESHOLD ? '(Flat Rate 300)' : '(2.75%)'}:</span>
+                                <span>SHIF ${shifDisplay}:</span>
                                 <span class="result-value">${formatCurrency(shif)}</span>
                             </div>
                             ` : `
@@ -636,7 +633,7 @@
                                 <span class="result-value">${formatCurrency(grossSalary)}</span>
                             </div>
                             <div class="result-row">
-                                <span>Employer NSSF (${nssfYearDisplay}):</span>
+                                <span>Employer NSSF (Tier 1 + Tier 2):</span>
                                 <span class="result-value">${formatCurrency(employerNSSF)}</span>
                             </div>
                             ${includeSHIF ? `
@@ -708,7 +705,7 @@
                 resultsSection.style.display = 'none';
                 resultsContent.innerHTML = '';
                 grossSalaryInput.focus();
-                document.getElementById('nssfInfo').textContent = '2026: Tier 1: 6% up to 9,000 | Tier 2: 6% from 9,001 to 108,000';
+                document.getElementById('nssfInfo').textContent = '2026: Employee NSSF: 6% up to 9,000 (KES 540 max)';
             }
 
             // ============================================
@@ -731,9 +728,11 @@
             console.log('🚀 KRA iTax Calculator Loaded Successfully!');
             console.log('📊 Using exact KRA rates for 2025/2026');
             console.log('📋 PAYE Bands: 10%, 25%, 30%, 32.5%, 35%');
-            console.log('📋 NSSF: Tier 1 (6% up to 9,000), Tier 2 (6% up to 108,000)');
+            console.log('📋 NSSF Employee: Tier 1 ONLY (6% up to 9,000)');
+            console.log('📋 NSSF Employer: Tier 1 + Tier 2');
             console.log('📋 SHIF: 300 (low income) or 2.75%');
             console.log('📋 Housing Levy: 1.5%');
+            console.log('📋 Personal Relief: KES 2,400');
         });
     </script>
     <script src="script.js"></script>
